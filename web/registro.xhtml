@@ -1,0 +1,83 @@
+
+<ui:composition 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+    xmlns:f="http://java.sun.com/jsf/core"
+    >     
+    <head>
+        <meta content=""/>
+        <title>
+            Registro
+        </title>
+        <link href="resources/css/styles.css" rel="stylesheet" />
+    </head>
+    <body class="bg-primary">
+        <div id="layoutAuthentication">
+            <div id="layoutAuthentication_content">
+                <div class="container">
+                    <div></div>
+                    <div class="row justify-content-center">
+                        <div class="col-lg-5">
+                            <div class="card shadow-lg border-0 rounded-lg mt-5 mb-4">
+                                <div class="card-header"><h3 class="text-center font-weight-light my-4">Registro</h3></div>
+                                    <div class="card-body">
+                                        <h:form id="registro">
+                                            <div class="form-row">
+                                                <div class ="form-group ml-2">
+                                                    <label for="so">Selecciona el tipo de usuario al que pertenece:</label> <br/>
+                                                    <h:selectOneMenu class="mt-2 mb-2" id="so" value="#{bd.selecciona(itemValue)}" >
+                                                        <f:selectItem itemValue="1" itemLabel="   Voluntario   "/>
+                                                        <f:selectItem itemValue="2" itemLabel="   Responsable   "/>
+                                                        <f:selectItem itemValue="3" itemLabel="   Afiliado   "/>
+                                                    </h:selectOneMenu>
+                                                    <h:commandButton class="btn btn-primary btn-block " value="Crear cuenta" action="#{bd.registrar()}" />
+                                                </div>
+                                                
+                                                <div class="col-md-6">
+                                                    <div class="form-group"><label class="mb-1" for="inputFirstName">Nombre*</label><h:inputText class="form-control py-4" value="#{bd.getNuevoUsuario().setNombre()}"/></div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group"><label class=" mb-1" for="inputLastName">Apellidos*</label><h:inputText class="form-control py-4" id="inputLastName" value="#{bd.getNuevoUsuario().apellidos}"  /></div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group"><label class="mb-1" for="inputUserName">Nombre Usuario*</label><h:inputText class="form-control py-4" id="inputUserName"  value="#{bd.getNuevoUsuario().usuario}"/></div>
+                                            <div class="form-group"><label class="mb-1" for="inputEmailAddress">Email*</label><h:inputText class="form-control py-4" id="inputEmailAddress" value="#{bd.getNuevoUsuario().email}" /></div>
+                                            <div class="form-row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group"><label class="mb-1" for="inputDNI">DNI*</label><h:inputText class="form-control py-4" id="inputDNI" value="#{bd.getNuevoafiliado().dni}" /></div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group"><label class="mb-1" for="inputTlf">Telefono</label><h:inputText class="form-control py-4" id="inputTlf" value="#{bd.getNuevoafiliado().num_tlf}"/></div>
+                                                </div>
+                                            </div>
+                                            <div class="form-row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group"><label class="mb-1" for="inputPassword">Password</label><h:inputSecret class="form-control py-4" id="inputPassword" value="#{bd.getNuevoUsuario().contrasenia}" /></div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group"><label class="mb-1" for="inputConfirmPassword">Confirmar password</label><h:inputSecret class="form-control py-4" id="inputConfirmPassword" /></div>
+                                                </div>
+                                                <div>
+                                                    <label class="" for="Desc">Descripcion</label>
+                                                    <h:inputTextarea rows = "6" cols = "53" readonly = "false" class="form-control py-4" value="#{bd.getNuevoresponsable().descripcion}"/>
+                                                </div>
+                                            </div>
+                                            <div class="form-group mt-4">
+                                                 <h:commandButton class="btn btn-primary btn-block " value="Crear cuenta" action="#{bd.registrar()}" />
+                                            </div>    
+                                        </h:form>
+                                    </div>
+                                <div class="card-footer text-center">
+                                        <div class="small"><a href="/Entrega2/faces/login.xhtml">¿Ya tienes una cuenta? Inicia sesion</a></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+    
+</ui:composition>

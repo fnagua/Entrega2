@@ -1,0 +1,83 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+<!-- Barra Superior -->
+<nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+    <a class="navbar-brand" href="/Entrega2/faces/lista.xhtml">Voluntariado UMA</a>
+    <button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" value="sasdfasdf"><i class="fas fa-bars"></i></button>
+    <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
+        <div class="input-group">
+            <div class="input-group-append"></div>
+        </div>
+    </form>
+    
+    <!-- Boton Usuario -->
+    <ul class="navbar-nav ml-auto ml-md-0">
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+                
+                <h:form id="menu">
+                    <c:choose>
+                    
+                    
+                        <c:when test="#{empty controlAutorizacion.usuario}">
+                            <div class="row">
+                                <div class="col-lg-2 ml-4 mt-1">
+                                    <i class="fas fa-sign-in-alt"></i>
+                                </div>
+                                <div class="col-lg-8">
+                                    <h:commandButton class="dropdown-item"  value="Login" action="#{controlAutorizacion.login()}"/>
+                                </div>
+                            </div>
+                                
+                            <div class="dropdown-divider"></div>
+                                
+                            <div class="row">
+                                <div class="col-lg-2 ml-4 mt-1">
+                                    <i class="fa fa-user-plus"></i>
+                                </div>
+                                <div class="col-lg-8">
+                                    <h:commandButton class="dropdown-item"  value="Sig in" action="#{controlAutorizacion.registro()}"/>
+                                </div>
+                            </div>
+
+                        </c:when>
+
+                        <c:otherwise>
+                            <div class="row">
+                                <div class="col-lg-2 ml-4 mt-1">
+                                    <i class="far fa-id-card mr-2"></i>
+                                </div>
+                                <div class="col-lg-8">
+                                    <h:commandButton class="dropdown-item"  value="Perfil" action="#{controlAutorizacion.perfil()}"/>
+                                </div>
+                            </div>
+                           
+                            <div class="dropdown-divider"></div>
+                            
+                            <div class="row">
+                                <div class="col-lg-2 ml-4 mt-1">
+                                    <i class="fas fa-sign-in-alt"></i>
+                                </div>
+                                <div class="col-lg-8">
+                                    <h:commandButton class="dropdown-item"  value="Logout" action="#{controlAutorizacion.logout()}"/>
+                                </div>
+                            </div>
+                            
+                            
+                        </c:otherwise>
+                        
+                    </c:choose>
+                </h:form>
+                
+            </div>
+        </li>
+    </ul>
+    <!-- /Boton Usuario -->
+</nav>
+<!-- /Barra Superior-->
+
+</html>

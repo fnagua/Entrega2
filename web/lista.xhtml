@@ -1,0 +1,71 @@
+<ui:composition 
+    template="templates/base.xhtml"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+    
+    >
+    <ui:define name="title">Lista Actividades</ui:define>
+    <ui:define name="content">
+        
+        <div class="container-fluid">
+            <h1 class="mt-4">Actividades</h1>
+            <div class="card">
+                <div class="card-header"><i class="fas fa-check mr-1" /> Disponibles</div>
+                <div class="card-body">
+                    <h:form>
+                        <div class="row">
+                            <c:forEach var="a" items="#{bd.getActividadesDisponibles()}">
+                                <div class="col-xl-3 ">
+                                    <div class="card mb-2">
+                                        <div class="card-header form-group d-flex align-items-center justify-content-between">
+                                            <a><i class="far fa-dot-circle" /></a>
+                                            <h:outputText value="#{a.nombre}"/>
+                                            <h:commandButton class="btn btn-primary" value="Acceder" action="#{bd.actividad(a.id)}"/>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="ml-2 mt-2"><b>Tipo<br/></b><h:outputText value="#{a.tipo}"/></div>
+                                            <div class="ml-2 mt-2"><b>Fecha Inicio<br/></b><h:outputText value="#{a.fechaInicio}"/></div>
+                                            <div class="ml-2 mt-2"><b>Fecha Fin<br/></b><h:outputText value="#{a.fechaFin}"/></div>          
+                                            <div class="ml-2 mt-2"><b>Lugar<br/></b><h:outputText value="#{a.lugar}"/></div>
+                                            <div class="ml-2 mt-2"><b>Descripción<br/></b><h:outputText value="#{a.descripcion}"/></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </c:forEach>
+                        </div>
+                    </h:form>
+                </div>
+            </div>
+
+            <div class="card mb-4 mt-4">
+                <div class="card-header"><i class="far fa-clock mr-1" /> Finalizadas</div>
+                <div class="card-body">
+                    <h:form>
+                        <div class="row">
+                            <c:forEach var="a" items="#{bd.getActividadesFinalizadas()}">
+                                <div class="col-xl-3 col-md-6">
+                                    <div class="card mb-2">
+                                        <div class="card-header form-group d-flex align-items-center justify-content-between">
+                                            <a><i class="far fa-dot-circle" /></a>
+                                            <h:outputText value="#{a.nombre}"/>
+                                            <h:commandButton class="btn btn-primary" value="Acceder" action="#{bd.actividad(a.id)}"/>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="ml-2 mt-2"><b>Tipo<br/></b><h:outputText value="#{a.tipo}"/></div>
+                                            <div class="ml-2 mt-2"><b>Fecha Inicio<br/></b><h:outputText value="#{a.fechaInicio}"/></div>
+                                            <div class="ml-2 mt-2"><b>Fecha Fin<br/></b><h:outputText value="#{a.fechaFin}"/></div>          
+                                            <div class="ml-2 mt-2"><b>Lugar<br/></b><h:outputText value="#{a.lugar}"/></div>
+                                            <div class="ml-2 mt-2"><b>Descripción<br/></b><h:outputText value="#{a.descripcion}"/></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </c:forEach>
+                        </div>
+                    </h:form>
+                </div>
+            </div>
+        </div>
+    </ui:define>
+</ui:composition>

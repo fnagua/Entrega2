@@ -1,0 +1,122 @@
+<ui:composition 
+    template="/templates/base.xhtml"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+    >
+    <ui:define name="title">Editar Perfil</ui:define>
+    <ui:define name="content">
+            <c:choose>
+            <c:when test="#{not empty controlAutorizacion.usuario}">
+                
+                    <div class="container-fluid">
+                      <h1 class="mt-4">
+                        Editar Perfil
+                      </h1>
+                      <div class="card mb-4">
+                        <div class="card-header">
+                          Nombre
+                        </div>
+                        <div class="card-body">
+                          <div class="table-responsive">
+                            <p><h:outputText value="#{controlAutorizacion.usuario.usuario}"/></p>
+                            <div class="form-group">
+                              <input class="form-control py-4" id="inputNombre" />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="card mb-4">
+                        <div class="card-header">
+                          Apellido
+                        </div>
+                        <div class="card-body">
+                          <div class="table-responsive">
+                            <p>
+                              ##actual##
+                            </p>
+                            <div class="form-group">
+                              <input class="form-control py-4" id="inputApellido" />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="card mb-4">
+                        <div class="card-header">
+                          Email
+                        </div>
+                        <div class="card-body">
+                          <div class="table-responsive">
+                            <p>
+                              ##actual##
+                            </p>
+                            <div class="form-group">
+                              <input class="form-control py-4" id="inputEmailAddress" />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="card mb-4">
+                        <div class="card-header">
+                          Nº teléfono
+                        </div>
+                        <div class="card-body">
+                          <div class="table-responsive">
+                            <p>
+                              ##actual##
+                            </p>
+                            <div class="form-group">
+                              <input class="form-control py-4" id="inputNtelf" />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="card mb-4">
+                        <div class="card-header">
+                          DNI
+                        </div>
+                        <div class="card-body">
+                          <div class="table-responsive">
+                            <p>
+                              ##actual##
+                            </p>
+                            <div class="form-group">
+                              <input class="form-control py-4" id="inputDNI" />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="card mb-4">
+                        <div class="card-header">
+                          Descripción
+                        </div>
+                        <div class="card-body">
+                          <div class="table-responsive">
+                            <p>
+                              ##actual##
+                            </p>
+                            <div class="form-group">
+                              <input class="form-control py-4" id="inputDescripcion" />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="form-group d-flex align-items-center justify-content-between mt-4">
+                        <a class="btn btn-primary" href="/Entrega2/faces/perfil.xhtml">Cancelar</a>
+                         <!-- vuelve a perfil --> 
+                         <a class="btn btn-primary" href="/Entrega2/faces/perfil.xhtml">Aplicar cambios</a>
+                         <!--  llama a la funcion y vuelve a perfil -->
+                      </div>
+                    </div> 
+                         </c:when>
+                            <c:otherwise>
+
+                                <p>AQUI VA LA PAGINA DE ERROR</p>
+                            </c:otherwise>
+                        </c:choose>
+                </ui:define>
+    
+    
+      
+</ui:composition>

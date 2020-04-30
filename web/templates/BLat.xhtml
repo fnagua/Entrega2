@@ -1,0 +1,61 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+<div id="layoutSidenav_nav">
+    <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+        <div class="sb-sidenav-menu">
+            <div class="nav">
+                <div class="sb-sidenav-menu-heading"></div> <!-- Solo sirve para poner el espacio vertical de la barra -->
+                    <a class="nav-link" href="/WebApplication1/faces/lista.xhtml"><div class="sb-nav-link-icon"><i class="fas fa-list"></i></div>Lista actividades</a>
+                
+                <c:if test="#{not empty controlAutorizacion.usuario}">
+                    <!-- Administracion -->
+                    <div class="sb-sidenav-menu-heading">Administración</div>
+                    <a class="nav-link" href="/WebApplication1/faces/proponer.xhtml"><div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>Proponer actividades</a>
+                    <c:if test="#{ controlAutorizacion.usuario.rol != 'VOLUNTARIO'}">
+                        <a class="nav-link" href="/WebApplication1/faces/listaVal.xhtml"><div class="sb-nav-link-icon"><i class="fas fa-tasks"></i></div>Validar actividades</a>
+                    </c:if>
+                </c:if>
+                    
+                <!-- /Administracion -->
+            </div>
+        </div>
+        <!-- Abajo -->
+        <div class="sb-sidenav-footer">
+            
+            <c:choose>
+            <c:when test="#{empty controlAutorizacion.usuario}">
+                
+                <div class="small">Not Logged in</div>
+                
+            </c:when>
+            <c:otherwise>
+                
+                <c:if test="#{controlAutorizacion.usuario.rol == 'ADMINISTRADOR'}">
+                    <div class="small">Logged in as <b>administrator</b></div>
+                </c:if>
+                
+                <c:if test="#{controlAutorizacion.usuario.rol == 'VOLUNTARIO'}">
+                    <div class="small">Logged in as <b>voluntario</b></div>
+                </c:if>
+                
+                <c:if test="#{controlAutorizacion.usuario.rol == 'RESPONSABLE'}">
+                    <div class="small">Logged in as <b>responsable</b></div>
+                </c:if>
+                
+                <c:if test="#{controlAutorizacion.usuario.rol == 'AFILIADO'}">
+                    <div class="small">Logged in as <b>afiliado</b></div>
+                </c:if>
+                
+            </c:otherwise>
+            
+            </c:choose>
+            
+        </div>
+        <!-- /Abajo -->
+    </nav>
+</div>
+    
+</html>
