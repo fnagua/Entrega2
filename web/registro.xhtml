@@ -1,4 +1,3 @@
-
 <ui:composition 
     xmlns="http://www.w3.org/1999/xhtml"
     xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
@@ -17,7 +16,6 @@
         <div id="layoutAuthentication">
             <div id="layoutAuthentication_content">
                 <div class="container">
-                    <div></div>
                     <div class="row justify-content-center">
                         <div class="col-lg-5">
                             <div class="card shadow-lg border-0 rounded-lg mt-5 mb-4">
@@ -26,47 +24,15 @@
                                         <h:form id="registro">
                                             <div class="form-row">
                                                 <div class ="form-group ml-2">
-                                                    <label for="so">Selecciona el tipo de usuario al que pertenece:</label> <br/>
-                                                    <h:selectOneMenu class="mt-2 mb-2" id="so" value="#{bd.selecciona(itemValue)}" >
+                                                    <label for="so" class="ml-4">Selecciona el tipo de usuario al que pertenece:</label> <br/>
+                                                    <h:selectOneMenu class="mt-2 mb-2 w-100 ml-4" id="so" value="#{bd.elegir}" >
                                                         <f:selectItem itemValue="1" itemLabel="   Voluntario   "/>
                                                         <f:selectItem itemValue="2" itemLabel="   Responsable   "/>
                                                         <f:selectItem itemValue="3" itemLabel="   Afiliado   "/>
                                                     </h:selectOneMenu>
-                                                    <h:commandButton class="btn btn-primary btn-block " value="Crear cuenta" action="#{bd.registrar()}" />
+                                                    <h:commandButton class="btn btn-primary btn-block ml-4" value="Seleccionar" action="#{bd.elegir()}" />
                                                 </div>
-                                                
-                                                <div class="col-md-6">
-                                                    <div class="form-group"><label class="mb-1" for="inputFirstName">Nombre*</label><h:inputText class="form-control py-4" value="#{bd.getNuevoUsuario().setNombre()}"/></div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group"><label class=" mb-1" for="inputLastName">Apellidos*</label><h:inputText class="form-control py-4" id="inputLastName" value="#{bd.getNuevoUsuario().apellidos}"  /></div>
-                                                </div>
-                                            </div>
-                                            <div class="form-group"><label class="mb-1" for="inputUserName">Nombre Usuario*</label><h:inputText class="form-control py-4" id="inputUserName"  value="#{bd.getNuevoUsuario().usuario}"/></div>
-                                            <div class="form-group"><label class="mb-1" for="inputEmailAddress">Email*</label><h:inputText class="form-control py-4" id="inputEmailAddress" value="#{bd.getNuevoUsuario().email}" /></div>
-                                            <div class="form-row">
-                                                <div class="col-md-6">
-                                                    <div class="form-group"><label class="mb-1" for="inputDNI">DNI*</label><h:inputText class="form-control py-4" id="inputDNI" value="#{bd.getNuevoafiliado().dni}" /></div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group"><label class="mb-1" for="inputTlf">Telefono</label><h:inputText class="form-control py-4" id="inputTlf" value="#{bd.getNuevoafiliado().num_tlf}"/></div>
-                                                </div>
-                                            </div>
-                                            <div class="form-row">
-                                                <div class="col-md-6">
-                                                    <div class="form-group"><label class="mb-1" for="inputPassword">Password</label><h:inputSecret class="form-control py-4" id="inputPassword" value="#{bd.getNuevoUsuario().contrasenia}" /></div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group"><label class="mb-1" for="inputConfirmPassword">Confirmar password</label><h:inputSecret class="form-control py-4" id="inputConfirmPassword" /></div>
-                                                </div>
-                                                <div>
-                                                    <label class="" for="Desc">Descripcion</label>
-                                                    <h:inputTextarea rows = "6" cols = "53" readonly = "false" class="form-control py-4" value="#{bd.getNuevoresponsable().descripcion}"/>
-                                                </div>
-                                            </div>
-                                            <div class="form-group mt-4">
-                                                 <h:commandButton class="btn btn-primary btn-block " value="Crear cuenta" action="#{bd.registrar()}" />
-                                            </div>    
+                                            </div>  
                                         </h:form>
                                     </div>
                                 <div class="card-footer text-center">
@@ -81,3 +47,10 @@
     </body>
     
 </ui:composition>
+
+
+
+
+
+
+
