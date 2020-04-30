@@ -19,10 +19,9 @@
                             <c:forEach var="a" items="#{bd.getActividadesDisponibles()}">
                                 <div class="col-xl-3 ">
                                     <div class="card mb-2">
-                                        <div class="card-header form-group d-flex align-items-center justify-content-between">
-                                            <a><i class="far fa-dot-circle" /></a>
+                                        <div class="card-header  text-center">
+                                            <a><i class="far fa-dot-circle mr-2" /></a>
                                             <h:outputText value="#{a.nombre}"/>
-                                            <h:commandButton class="btn btn-primary" value="Acceder" action="#{bd.actividad(a.id)}"/>
                                         </div>
                                         <div class="card-body">
                                             <div class="ml-2 mt-2"><b>Tipo<br/></b><h:outputText value="#{a.tipo}"/></div>
@@ -30,6 +29,9 @@
                                             <div class="ml-2 mt-2"><b>Fecha Fin<br/></b><h:outputText value="#{a.fechaFin}"/></div>          
                                             <div class="ml-2 mt-2"><b>Lugar<br/></b><h:outputText value="#{a.lugar}"/></div>
                                             <div class="ml-2 mt-2"><b>Descripción<br/></b><h:outputText value="#{a.descripcion}"/></div>
+                                        </div>
+                                        <div class="card-footer text-right">
+                                            <h:commandButton class="btn btn-primary" value="Acceder" action="#{bd.actividad(a.id)}"/>
                                         </div>
                                     </div>
                                 </div>
@@ -47,10 +49,9 @@
                             <c:forEach var="a" items="#{bd.getActividadesFinalizadas()}">
                                 <div class="col-xl-3 col-md-6">
                                     <div class="card mb-2">
-                                        <div class="card-header form-group d-flex align-items-center justify-content-between">
-                                            <a><i class="far fa-dot-circle" /></a>
+                                        <div class="card-header  text-center">
+                                            <a><i class="far fa-dot-circle mr-2" /></a>
                                             <h:outputText value="#{a.nombre}"/>
-                                            <h:commandButton class="btn btn-primary" value="Acceder" action="#{bd.actividad(a.id)}"/>
                                         </div>
                                         <div class="card-body">
                                             <div class="ml-2 mt-2"><b>Tipo<br/></b><h:outputText value="#{a.tipo}"/></div>
@@ -58,6 +59,9 @@
                                             <div class="ml-2 mt-2"><b>Fecha Fin<br/></b><h:outputText value="#{a.fechaFin}"/></div>          
                                             <div class="ml-2 mt-2"><b>Lugar<br/></b><h:outputText value="#{a.lugar}"/></div>
                                             <div class="ml-2 mt-2"><b>Descripción<br/></b><h:outputText value="#{a.descripcion}"/></div>
+                                        </div>
+                                        <div class="card-footer text-right">
+                                            <h:commandButton class="btn btn-primary" value="Acceder" action="#{bd.actividad(a.id)}"/>
                                         </div>
                                     </div>
                                 </div>
