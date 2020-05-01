@@ -6,6 +6,7 @@
 package sesiones;
 
 import java.io.Serializable;
+import java.text.ParseException;
 import jpa.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -37,6 +38,7 @@ public class BD implements Serializable {
     private static List<Actividad> actividades;
     private static Actividad mostrarActividad;
 
+    //Crear nuevo Usuario
     private String tipoUsuario;
     private String usuarioo;
     private String email;
@@ -47,37 +49,21 @@ public class BD implements Serializable {
     private String descripcion;
     private String dni;
 
+    //Crear nueva actividad
+    private String nombrea;
+    private String fechaInicioa;
+    private String fechaFina;
+    private String numParticipantesa;
+    private String lugara;
+    private String descripciona;
+    
+    
     private String elegir;
     private Usuario.Rol rol;
 
     @Inject
     private ControlAutorizacion ctrl;
     
-    public static void setActividades(List<Actividad> actividades) {
-        BD.actividades = actividades;
-    }
-    public static List<Usuario> getUsuarios() {
-        return usuarios;
-    }
-
-    public static void setUsuarios(List<Usuario> usuarios) {
-        BD.usuarios = usuarios;
-    }
-
-    public static Actividad getMostrarActividad() {
-        return mostrarActividad;
-    }
-
-    public static void setMostrarActividad(Actividad mostrarActividad) {
-        BD.mostrarActividad = mostrarActividad;
-    }
-    public ControlAutorizacion getCtrl() {
-        return ctrl;
-    }
-
-    public void setCtrl(ControlAutorizacion ctrl) {
-        this.ctrl = ctrl;
-    }
 
     public BD() throws Exception {
         // USUARIOS
@@ -90,7 +76,6 @@ public class BD implements Serializable {
 
         // ACTIVIDADES
         actividades = new ArrayList<Actividad>();
-
 
         actividades.add(new Actividad("Actividad_Disponible", tipo.Formacion,   estado.Disponible, new SimpleDateFormat("dd/MM/yyyy").parse("30/12/2020"), new SimpleDateFormat("dd/MM/yyyy").parse("31/12/2020"), "Descripcion Actividad_Disponible", "Estepona"));
         actividades.add(new Actividad("Actividad_Disponible", tipo.Formacion,   estado.Disponible, new SimpleDateFormat("dd/MM/yyyy").parse("30/12/2020"), new SimpleDateFormat("dd/MM/yyyy").parse("31/12/2020"), "Descripcion Actividad_Disponible", "Estepona"));
@@ -116,111 +101,38 @@ public class BD implements Serializable {
     public void setContrasenia(String contrasenia) {
         this.contrasenia = contrasenia;
     }
+     public static void setActividades(List<Actividad> actividades) {
+        BD.actividades = actividades;
+    }
+    public static List<Usuario> getUsuarios() {
+        return usuarios;
+    }
 
-    public Actividad getActividad(Long id){
-         Actividad res = null;
-        for(Actividad a : actividades){
-            if(a.getId()==id){
-                res = a;
-            }
-        }
-        return res;
-     }
-    public Actividad getActividad(){
+    public static void setUsuarios(List<Usuario> usuarios) {
+        BD.usuarios = usuarios;
+    }
+
+    public static Actividad getMostrarActividad() {
+        return mostrarActividad;
+    }
+
+    public static void setMostrarActividad(Actividad mostrarActividad) {
+        BD.mostrarActividad = mostrarActividad;
+    }
+    public ControlAutorizacion getCtrl() {
+        return ctrl;
+    }
+
+    public void setCtrl(ControlAutorizacion ctrl) {
+        this.ctrl = ctrl;
+    }
+     public Actividad getActividad(){
         return mostrarActividad;
     }
     public List<Actividad> getActividades(){
         return actividades;
     }
-
-    public List<Actividad> getActividadesDisponibles(){
-        List<Actividad> ad = new ArrayList<Actividad>();
-
-        for (Actividad a : actividades) {
-            if(a.getEstado().equals(estado.Disponible))
-            ad.add(a);
-        }
-
-        return ad;
-    }
-    public List<Actividad> getActividadesFinalizadas(){
-        List<Actividad> af = new ArrayList<Actividad>();
-
-        for (Actividad a : actividades) {
-            if(a.getEstado().equals(estado.Finalizada))
-            af.add(a);
-        }
-
-        return af;
-    }
-    public List<Actividad> getActividadesPendientes(){
-        List<Actividad> ap = new ArrayList<Actividad>();
-
-        for (Actividad a : actividades) {
-            if(a.getEstado().equals(estado.Pendiente))
-            ap.add(a);
-        }
-
-        return ap;
-    }
-
-    public List<Actividad> getActividadesRechazadas(){
-        List<Actividad> ar = new ArrayList<Actividad>();
-
-        for (Actividad a : actividades) {
-            if(a.getEstado().equals(estado.Rechazada))
-            ar.add(a);
-        }
-
-        return ar;
-    }
-    public String actividad(Long id){
-
-        mostrarActividad = getActividad(id);
-
-        return "actividad.xhtml";
-    }
-    public int getParticipantes(){
-        return mostrarActividad.getUsuarios().size();
-    }
-
-    public void addUsuario(String usuario, String email, String nombre, String apellidos, String contrasenia, Usuario.Rol rol){
-        usuarios.add(new Usuario(usuario, email, nombre, apellidos, contrasenia, rol));
-    }
-
-    public String autenticar() {
-
-        FacesContext ctx = FacesContext.getCurrentInstance();
-
-        Boolean b = false;
-        Iterator i = usuarios.iterator();
-
-        Usuario u = null;
-
-        while(i.hasNext() && !b) {//buscamos el usuario
-            u = (Usuario) i.next();
-            if(u.getUsuario().equals(usuario)) {
-                b = true;
-            }
-        }
-
-        if(b) {//usuario encontrado
-            if(u.getContrasenia().equals(contrasenia)) {//contraseña correcta
-                ctrl.setUsuario(u);
-                ctrl.setLogeado(true);
-                return ctrl.home();
-            } else {//contraseña incorrecta
-               FacesMessage fm = new FacesMessage("La contraseña no es correcta");
-                FacesContext.getCurrentInstance().addMessage("login:pass", fm);
-            }
-        } else {//usuario no encontrado
-            FacesMessage fm = new FacesMessage("La cuenta no existe");
-            FacesContext.getCurrentInstance().addMessage("login:user", fm);
-        }
-        return "login.xhtml";
-    }
-
-   public String getTipo() {
+    public String getTipo() {
         return tipoUsuario;
     }
 
@@ -291,12 +203,7 @@ public class BD implements Serializable {
     public void setDni(String dni) {
         this.dni = dni;
     }
-    public String registrar(){
-        Usuario user = new Usuario(usuarioo,email,nombre,apellidos,contraseniaa,rol);
-        usuarios.add(user);
-        return "login.xhtml";
-    }
-
+    
     public String getElegir() {
         return elegir;
     }
@@ -304,6 +211,167 @@ public class BD implements Serializable {
     public void setElegir(String elegir) {
         this.elegir = elegir;
     }
+    
+    
+    public String getNombrea() {
+        return nombrea;
+    }
+
+    public void setNombrea(String nombrea) {
+        this.nombrea = nombrea;
+    }
+
+
+   
+
+
+    public String getFechaInicioa() {
+        return fechaInicioa;
+    }
+
+    public void setFechaInicioa(String fechaInicioa) {
+        this.fechaInicioa = fechaInicioa;
+    }
+
+    public String getFechaFina() {
+        return fechaFina;
+    }
+
+    public void setFechaFina(String fechaFina) {
+        this.fechaFina = fechaFina;
+    }
+
+    public String getNumParticipantesa() {
+        return numParticipantesa;
+    }
+
+    public void setNumParticipantesa(String numParticipantesa) {
+        this.numParticipantesa = numParticipantesa;
+    }
+
+    public String getLugara() {
+        return lugara;
+    }
+
+    public void setLugara(String lugara) {
+        this.lugara = lugara;
+    }
+
+  
+
+    public String getDescripciona() {
+        return descripciona;
+    }
+
+    public void setDescripciona(String descripciona) {
+        this.descripciona = descripciona;
+    }
+    
+    public Actividad getActividad(Long id){
+         Actividad res = null;
+        for(Actividad a : actividades){
+            if(a.getId()==id){
+                res = a;
+            }
+        }
+        return res;
+     }
+   
+
+    public List<Actividad> getActividadesDisponibles(){
+        List<Actividad> ad = new ArrayList<Actividad>();
+
+        for (Actividad a : actividades) {
+            if(a.getEstado().equals(estado.Disponible))
+            ad.add(a);
+        }
+
+        return ad;
+    }
+    public List<Actividad> getActividadesFinalizadas(){
+        List<Actividad> af = new ArrayList<Actividad>();
+
+        for (Actividad a : actividades) {
+            if(a.getEstado().equals(estado.Finalizada))
+            af.add(a);
+        }
+
+        return af;
+    }
+    public List<Actividad> getActividadesPendientes(){
+        List<Actividad> ap = new ArrayList<Actividad>();
+
+        for (Actividad a : actividades) {
+            if(a.getEstado().equals(estado.Pendiente))
+            ap.add(a);
+        }
+
+        return ap;
+    }
+
+    public List<Actividad> getActividadesRechazadas(){
+        List<Actividad> ar = new ArrayList<Actividad>();
+
+        for (Actividad a : actividades) {
+            if(a.getEstado().equals(estado.Rechazada))
+            ar.add(a);
+        }
+
+        return ar;
+    }
+    public String actividad(Actividad a){ 
+        setMostrarActividad(a);
+        return "actividad.xhtml";
+    }
+    public int getParticipantes(){
+        if(mostrarActividad.getUsuarios()==null){
+            return 0;
+        }
+        return mostrarActividad.getUsuarios().size();
+    }
+
+    public void addUsuario(String usuario, String email, String nombre, String apellidos, String contrasenia, Usuario.Rol rol){
+        usuarios.add(new Usuario(usuario, email, nombre, apellidos, contrasenia, rol));
+    }
+    
+    public String autenticar() {
+
+        FacesContext ctx = FacesContext.getCurrentInstance();
+
+        Boolean b = false;
+        Iterator i = usuarios.iterator();
+
+        Usuario u = null;
+
+        while(i.hasNext() && !b) {//buscamos el usuario
+            u = (Usuario) i.next();
+            if(u.getUsuario().equals(usuario)) {
+                b = true;
+            }
+        }
+
+        if(b) {//usuario encontrado
+            if(u.getContrasenia().equals(contrasenia)) {//contraseña correcta
+                ctrl.setUsuario(u);
+                ctrl.setLogeado(true);
+                return ctrl.home();
+            } else {//contraseña incorrecta
+               FacesMessage fm = new FacesMessage("La contraseña no es correcta");
+                FacesContext.getCurrentInstance().addMessage("login:pass", fm);
+            }
+        } else {//usuario no encontrado
+            FacesMessage fm = new FacesMessage("La cuenta no existe");
+            FacesContext.getCurrentInstance().addMessage("login:user", fm);
+        }
+        return "login.xhtml";
+    }
+
+    public String registrar(){
+        Usuario user = new Usuario(usuarioo,email,nombre,apellidos,contraseniaa,rol);
+        usuarios.add(user);
+        return "login.xhtml";
+    }
+
     public String elegir(){
         String s="";
         switch(elegir){
@@ -339,5 +407,26 @@ public class BD implements Serializable {
         }
         ctrl.setUsuario(user);
         return "perfil.xhtml";
+    }
+    public String proponer(){
+        Date fechaa = null;
+        Date fechab = null;
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        
+        try{    
+            fechaa = sdf.parse(fechaInicioa);
+            fechab = sdf.parse(fechaFina);
+        }catch(ParseException e){
+            System.out.println(fechaInicioa);
+            System.out.println(fechaFina);
+        }
+        
+        Actividad acti = new Actividad(nombrea, tipo.Formacion,estado.Pendiente, fechaa, fechab, descripciona, lugara);
+        actividades.add(acti);
+        
+        //return actividad(b);
+        setMostrarActividad(acti);
+        return "actividad.xhtml";
+        
     }
 }

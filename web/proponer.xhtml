@@ -7,54 +7,53 @@
     >
     <ui:define name="title">Lista Actividades</ui:define>
     <ui:define name="content">
-        <h:form id="proponer">
+        
             <!--Nombre, Tipo, Estado, FechaInicio, FechaFin, Descripcion, NumParticipantes, Lugar-->
             <div class ="container-fluid">
                 <h1 class="mt-4"> Nueva Actividad </h1>
                 <div class="card mb-4">
                     <div class ="card-body">
+                        <h:form id="botones"> 
                         <div class="row">
+                            
                             <!--Lugar donde se introducen los datos de la actividad-->
                             <div class="col-lg-6">
                                 
                                 <p class="mb-2 mt-2"> Nombre: </p>
-                                <h:inputText class="form-control py-2" value="#{actividad.nombre}"/>
+                                <h:inputText class="form-control py-2" value="#{bd.nombrea}"/>
                                 
                                 <p class="mb-2 mt-2"> Tipo: </p>
-                                <h:inputText class="form-control py-2" value="#{actividad.tipo}"/>
-
-                                
-                                <p class="mb-2 mt-2"> Estado: </p>
-                                <h:inputText class="form-control py-2" value="#{actividad.estado}"/>
+                                <h:inputText class="form-control py-2" />
 
                                 <p class="mb-2 mt-2"> Fecha de inicio: </p>
-                                <h:inputText class="form-control py-2" value="#{actividad.inicio}"/>
+                                <h:inputText class="form-control py-2" value="#{bd.fechaInicioa}"/>
                                 
                                 <p class="mb-2 mt-2"> Fecha de fin: </p>
-                                <h:inputText class="form-control py-2" value="#{actividad.fin}"/>
-                               
-                                <p class="mb-2 mt-2"> Número de participantes: </p>
-                                <h:inputText class="form-control py-2" value="#{actividad.participantes()}"/>
+                                <h:inputText class="form-control py-2" value="#{bd.fechaFina}"/>
                                 
                                 <p class="mb-2 mt-2"> Lugar: </p>
-                                <h:inputText class="form-control py-2" value="#{actividad.lugar}"/>
-                                
+                                <h:inputText class="form-control py-2" value="#{bd.lugara}"/>
+                             
                             </div>
                                 <!--Descripción-->
                             <div class="col-lg-6">
+                                
                                 <div>
                                     <p class="mb-2 mt-2"> Descripción: </p> 
-                                    <h:inputTextarea rows = "10" cols = "53" readonly = "false" class="form-control" value="#{actividad.descripcion}"/>
+                                    <h:inputTextarea rows = "10" cols = "53" readonly = "false" class="form-control" value="#{bd.descripciona}"/>
                                 </div>
                                 <div>
-                                    <h:commandButton class="btn btn-primary mt-5" value="Enviar" action="#{actividad.proponer()}" />
+                                    <h:commandButton class="btn btn-primary mt-5" value="Enviar" action="#{bd.proponer()}" />
                                     <a class="btn btn-primary ml-5 mt-5" href="/Entrega2/faces/lista.xhtml">Cancelar</a>
                                 </div>
+                                
                             </div>
+                          
                         </div>
+                        </h:form>
                     </div>
                 </div>
             </div>
-        </h:form>
+        
     </ui:define>
 </ui:composition>

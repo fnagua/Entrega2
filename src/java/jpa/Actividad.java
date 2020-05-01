@@ -6,6 +6,8 @@
 package jpa;
 
 import java.io.Serializable;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -14,6 +16,7 @@ import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -35,7 +38,8 @@ public class Actividad implements Serializable {
     public enum tipo { Formacion, Voluntariado };
 
     private static final long serialVersionUID = 1L;
-    @Id @GeneratedValue
+    @Id 
+    @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;
     @Column(nullable = false)
     private String nombre;
@@ -192,16 +196,20 @@ public class Actividad implements Serializable {
         this.estado = estado;
     }
 
-    public Date getFechaInicio() {
-        return fechaInicio;
+    public String getFechaInicio() {
+        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        String strDate = dateFormat.format(fechaInicio);
+        return strDate;
     }
 
     public void setFechaInicio(Date fechaInicio) {
         this.fechaInicio = fechaInicio;
     }
 
-    public Date getFechaFin() {
-        return fechaFin;
+    public String getFechaFin() {
+        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        String strDate = dateFormat.format(fechaFin);
+        return strDate;
     }
 
     public void setFechaFin(Date fechaFin) {
