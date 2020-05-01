@@ -458,8 +458,8 @@ public class BD implements Serializable {
         Actividad acti = new Actividad(nombrea,tip,estado.Pendiente, fechaa, fechab, descripciona, lugara);
         actividades.add(acti);
         nombrea="";
-        fechaa=null;
-        fechab=null;
+        fechaInicioa=null;
+        fechaFina=null;
         descripciona="";
         lugara="";
         //return actividad(b);
@@ -516,5 +516,13 @@ public class BD implements Serializable {
     
     public boolean isUsuarioActividad(){
         return mostrarActividad.isUser(ctrl.getUsuario());
+    }
+    
+    public boolean isDisponible(){
+        return mostrarActividad.getEstado().equals(Actividad.estado.Disponible);
+    }
+    
+    public boolean isPendiente(){
+        return mostrarActividad.getEstado().equals(Actividad.estado.Pendiente);
     }
 }
