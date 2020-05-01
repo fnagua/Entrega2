@@ -71,7 +71,7 @@ public class Actividad implements Serializable {
     
     @ManyToMany//participa
     @JoinTable(name = "ACTIVIDAD_USUARIOS", joinColumns = { @JoinColumn(name = "actividad_fk") }, inverseJoinColumns = { @JoinColumn(name = "usuarios_fk") })
-    private List<Usuario> usuarios;
+    private List<Usuario> usuarios = new ArrayList<>();
 
     public String getValoraciones() {
         return valoraciones;
@@ -90,9 +90,21 @@ public class Actividad implements Serializable {
     public void setCursos(List<Curso> cursos) {
         this.cursos = cursos;
     }
+    
     public void addUser(Usuario u){
-        usuarios.add(u);
+        if (!usuarios.contains(u)) {
+            usuarios.add(u);
+        }
     }
+    
+    public void removeUser(Usuario u){
+        usuarios.remove(u);
+    }
+    
+    public boolean isUser(Usuario u){
+        return usuarios.contains(u);
+    }
+    
     public List<Usuario> getUsuarios() {
         if(usuarios==null)return new ArrayList<Usuario>();
         return usuarios;

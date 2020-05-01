@@ -62,11 +62,18 @@
                                             </div>
                                                 <h:form id="buttons">
                                                     <c:if test="#{not empty controlAutorizacion.usuario}">
-                                                   
-                                                        <div class="mb-4 row ml-4">
-                                                        <h:commandButton class="btn btn-primary" value="Inscribirse" action="#{bd.aniadirUsuario()}" />
-                                                        <!--aniadir usuario a la actividad y volvemos a actividad-->
-                                                        </div> 
+                                                        <c:if test="#{not bd.isUsuarioActividad()}">
+                                                            <div class="mb-4 row ml-4">
+                                                                <h:commandButton class="btn btn-primary" value="Inscribirse" action="#{bd.aniadirUsuario()}" />
+                                                                <!--aniadir usuario a la actividad y volvemos a actividad-->
+                                                            </div> 
+                                                        </c:if>
+                                                        <c:if test="#{bd.isUsuarioActividad()}">
+                                                            <div class="mb-4 row ml-4">
+                                                                <h:commandButton class="btn btn-primary" value="Eliminar Inscripción" action="#{bd.quitarUsuario()}" />
+                                                                <!--aniadir usuario a la actividad y volvemos a actividad-->
+                                                            </div> 
+                                                        </c:if>
                                                         <c:if test="#{controlAutorizacion.usuario.rol == 'RESPONSABLE' || controlAutorizacion.usuario.rol=='ADMINISTRADOR' ||controlAutorizacion.usuario.rol=='AFILIADO'}">
                                                             <div class="mb-4 row ml-4">
                                                                 <h:commandButton class="btn btn-primary" value="Validar" action="#{bd.validar()}" />
@@ -80,13 +87,8 @@
                                                                     <!-- eliminar actividad de la bd y vamos a val actividaes-->
                                                                 </c:if>
                                                             </div>
-                                                        </c:if>
-                                                     
-                                                  </c:if>
-                                                        
-                                                    
-                                                     
-
+                                                        </c:if> 
+                                                    </c:if>
                                                 </h:form>
                                            
                                         </div>
@@ -118,11 +120,9 @@
                                 <div class="card-body">
                                     <div class="table-responsive">
                                        <c:forEach var="a" items="#{bd.usuarios()}">
-                                           
-                                           <p class="mr-2"><b>Nombre: </b> <h:outputText value="#{a.nombre}"/>   
-                                           <b> Apellidos: </b> <h:outputText value="#{a.apellidos}"/></p>
-                                            
-                                           
+                                           <p class="mr-1"><h:outputText class="mr-2" value="#{a.nombre}"/>
+                                            <h:outputText value="#{a.apellidos}"/></p>
+                                           <div/>
                                        </c:forEach>
                                     </div>
                                 </div>

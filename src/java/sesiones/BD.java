@@ -507,6 +507,10 @@ public class BD implements Serializable {
         mostrarActividad.addUser(ctrl.getUsuario());
         return "actividad.xhtml?faces-redirect=true";
     }
+    public String quitarUsuario(){//todos ##LISTO##
+        mostrarActividad.removeUser(ctrl.getUsuario());
+        return "actividad.xhtml?faces-redirect=true";
+    }
     public String eliminar(){//ADMIN,RESPONSABLE
         if(actividades.remove(mostrarActividad)){
             return "listaVal.xhtml?faces-redirect=true";
@@ -515,5 +519,9 @@ public class BD implements Serializable {
     }
     public List<Usuario> usuarios(){
         return mostrarActividad.getUsuarios();
+    }
+    
+    public boolean isUsuarioActividad(){
+        return mostrarActividad.isUser(ctrl.getUsuario());
     }
 }
