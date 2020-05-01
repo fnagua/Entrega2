@@ -41,9 +41,11 @@
                                 <div class="ml-2 mt-2">
                                     <b>Email<br/></b>
                                     <h:outputText value="#{controlAutorizacion.usuario.email}"/>
-                                    <b><br/>Nº Teléfono<br/></b>
-                                    ####FALTA EL NUM TELF####
-                                    <h:outputText value="#{controlAutorizacion.usuario.email}"/>
+                                    <c:if test="#{controlAutorizacion.usuario.rol == 'AFILIADO'}">    
+                                        <b><br/>Nº Teléfono<br/></b>
+                                        649885632
+                                    </c:if>
+                                    <!--<h:outputText value="#{controlAutorizacion.usuario.email}"/>-->
                                 </div>
                             </div>
                         </div>

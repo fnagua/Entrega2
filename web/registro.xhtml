@@ -26,12 +26,17 @@
                                                     <div class="form-row">
                                                         <div class ="form-group ml-2">
                                                             <label for="so" class="ml-4">Selecciona el tipo de usuario al que pertenece:</label> <br/>
-                                                            <h:selectOneMenu class="mt-2 mb-2 w-100 ml-4" id="so" value="#{bd.elegir}" >
+                                                            <a class="row ml-4">
+                                                            <h:selectOneMenu class="mt-2 mb-2 w-100" id="so" value="#{bd.elegir}" >
                                                                 <f:selectItem itemValue="1" itemLabel="   Voluntario   "/>
                                                                 <f:selectItem itemValue="2" itemLabel="   Responsable   "/>
                                                                 <f:selectItem itemValue="3" itemLabel="   Afiliado   "/>
                                                             </h:selectOneMenu>
-                                                            <h:commandButton class="btn btn-primary btn-block ml-4" value="Seleccionar" action="#{bd.elegir()}" />
+                                                            </a>
+                                                            <div class="row d-flex ml-4 justify-content-between ">
+                                                                <h:commandButton class="btn btn-primary mt-4" value="Cancelar" action="#{controlAutorizacion.home()}" />
+                                                                <h:commandButton class="btn btn-primary mt-4" value="Seleccionar" action="#{bd.elegir()}" />
+                                                            </div>
                                                         </div>
                                                     </div>  
                                                 </h:form>

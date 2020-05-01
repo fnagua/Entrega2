@@ -52,7 +52,7 @@ public class BD implements Serializable {
     private String dni;
     
 
-    // Crear nueva actividad
+    // Proponer actividad
     private String nombrea;
     private String fechaInicioa;
     private String fechaFina;
@@ -250,10 +250,6 @@ public class BD implements Serializable {
         this.nombrea = nombrea;
     }
 
-
-   
-
-
     public String getFechaInicioa() {
         return fechaInicioa;
     }
@@ -363,8 +359,8 @@ public class BD implements Serializable {
         usuarios.add(new Usuario(usuario, email, nombre, apellidos, contrasenia, rol));
     }
     
-    public String autenticar() {
-
+    public String autenticar() {       
+        
         FacesContext ctx = FacesContext.getCurrentInstance();
 
         Boolean b = false;
@@ -385,27 +381,19 @@ public class BD implements Serializable {
                 ctrl.setLogeado(true);
                 return ctrl.home();
             } else {//contraseña incorrecta
-               FacesMessage fm = new FacesMessage("La contraseña no es correcta");
-                FacesContext.getCurrentInstance().addMessage("login:pass", fm);
+               //FacesMessage fm = new FacesMessage("La contraseña no es correcta");
+                //FacesContext.getCurrentInstance().addMessage("login:pass", fm);
+                ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Contraseña Incorrecta", "Contraseña Incorrecta"));
             }
         } else {//usuario no encontrado
-            FacesMessage fm = new FacesMessage("La cuenta no existe");
-            FacesContext.getCurrentInstance().addMessage("login:user", fm);
+            //FacesMessage fm = new FacesMessage("La cuenta no existe");
+            //FacesContext.getCurrentInstance().addMessage("login:user", fm);
+            //ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Usuario no encontrado", "Usuario no encontrado"));
+            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Tit msg", "Mensaje");
+        FacesContext.getCurrentInstance().addMessage(null, message);
         }
         return "login.xhtml?faces-redirect=true";
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
 
     public String registrarVoluntario(){
         
@@ -530,19 +518,6 @@ public class BD implements Serializable {
         return "login.xhtml?faces-redirect=true";
     }
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     public String elegir(){
         String s="";
         switch(elegir){
@@ -579,36 +554,36 @@ public class BD implements Serializable {
         ctrl.setUsuario(user);
         return "perfil.xhtml?faces-redirect=true";
     }
-    public String proponer(){
-        Date fechaa = null;
-        Date fechab = null;
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        
-        try{    
-            fechaa = sdf.parse(fechaInicioa);
-            fechab = sdf.parse(fechaFina);
-        }catch(ParseException e){
-            System.out.println(fechaInicioa);
-            System.out.println(fechaFina);
+
+    public String proponer()throws Exception {
+        //Comprobar nulls
+        if(nombrea.isEmpty()) {
+            FacesMessage fm = new FacesMessage("Campo \"Nombre\" vacío");
+            FacesContext.getCurrentInstance().addMessage("proponer:fechaInicio", fm);
+            return "proponer.xhtml?faces-redirect=true";
         }
+        if (!comprobarIntervaloFechas()) { //Comprueba formato y cronología
+            return "proponer.xhtml?faces-redirect=true";
+        }
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         tipo tip;
         if(tipoa.equals("1")){
             tip = tipo.Voluntariado;
         }else{
             tip = tipo.Formacion;
         }
-        Actividad acti = new Actividad(nombrea,tip,estado.Pendiente, fechaa, fechab, descripciona, lugara);
+        Actividad acti = new Actividad(nombrea,tip,estado.Pendiente, sdf.parse(fechaInicioa), sdf.parse(fechaFina), descripciona, lugara);
         actividades.add(acti);
         nombrea="";
         fechaInicioa=null;
         fechaFina=null;
         descripciona="";
         lugara="";
-        //return actividad(b);
         setMostrarActividad(acti);
         return "actividad.xhtml?faces-redirect=true";
         
     }
+
     public void valorar(){
         StringBuilder sb = new StringBuilder();
         sb.append("Estoy ");
@@ -676,6 +651,30 @@ public class BD implements Serializable {
         } catch (ParseException e) {
             return false;
         }
+        return true;
+    }
+
+    public boolean comprobarIntervaloFechas() {
+        if(!comprobarFecha(fechaInicioa) ) {
+            FacesMessage fm = new FacesMessage("Formato de fecha incorrecto, recuerde usar dd/MM/yyyy (01/01/2020)");
+            FacesContext.getCurrentInstance().addMessage("proponer:fechaInicio", fm);
+            fechaInicioa=null;
+            return false;
+        }
+        if(!comprobarFecha(fechaFina) ) {
+            FacesMessage fm = new FacesMessage("Formato de fecha incorrecto, recuerde usar dd/MM/yyyy (01/01/2020)");
+            FacesContext.getCurrentInstance().addMessage("proponer:fechaFin", fm);
+            fechaFina=null;
+            return false;
+        }
+        if(fechaInicioa.compareTo(fechaFina) > 0) {
+            FacesMessage fm = new FacesMessage("La fecha de inicio es posterior a la fecha de fin.");
+            FacesContext.getCurrentInstance().addMessage("proponer:fechaInicio", fm);
+            FacesContext.getCurrentInstance().addMessage("proponer:fechaFin", fm);
+            fechaInicioa=null;
+            fechaFina=null;
+            return false;
+         }
         return true;
     }
 }

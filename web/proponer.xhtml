@@ -1,74 +1,72 @@
-<ui:composition 
-    template="templates/base.xhtml"
-    xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-    xmlns:h="http://xmlns.jcp.org/jsf/html"
-    xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
-    xmlns:f="http://java.sun.com/jsf/core"
-    >
-    <ui:define name="title">Lista Actividades</ui:define>
+<ui:composition template="templates/base.xhtml" xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:c="http://xmlns.jcp.org/jsp/jstl/core" xmlns:f="http://java.sun.com/jsf/core">
+    <ui:define name="title">Proponer Actividad</ui:define>
     <ui:define name="content">
         <c:choose>
-            <c:when test="#{controlAutorizacion.usuario.rol == 'AFILIADO' || controlAutorizacion.usuario.rol == 'ADMINISTRADOR'}">
+            <c:when
+                test="#{controlAutorizacion.usuario.rol == 'AFILIADO' || controlAutorizacion.usuario.rol == 'ADMINISTRADOR'}">
                 <!--Nombre, Tipo, Estado, FechaInicio, FechaFin, Descripcion, NumParticipantes, Lugar-->
-                <div class ="container-fluid">
-                <h1 class="mt-4"> Nueva Actividad </h1>
-                <div class="card mb-4">
-                    <div class ="card-body">
-                        <h:form id="botones"> 
-                        <div class="row">
-                            
-                            <!--Lugar donde se introducen los datos de la actividad-->
-                            <div class="col-lg-6">
-                                
-                                <p class="mb-2 mt-2"> Nombre: </p>
-                                <h:inputText class="form-control py-2" value="#{bd.nombrea}"/>
-                                
-                                <p class="mb-2 mt-2"> Tipo: </p>
-                                <h:selectOneMenu class="mt-2 mb-2 w-100 " id="so" value="#{bd.tipoa}" >
-                                    <f:selectItem itemValue="1" itemLabel="   Voluntariado   "/>
-                                    <f:selectItem itemValue="2" itemLabel="   Formacion   "/>
-                                </h:selectOneMenu>
-                                
+                <div class="container-fluid">
+                    <h1 class="mt-4"> Nueva Actividad </h1>
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <h:form id="botones">
+                                <div class="row">
 
-                                <p class="mb-2 mt-2"> Fecha de inicio: </p>
-                                <h:inputText class="form-control py-2" value="#{bd.fechaInicioa}"/>
-                                
-                                <p class="mb-2 mt-2"> Fecha de fin: </p>
-                                <h:inputText class="form-control py-2" value="#{bd.fechaFina}"/>
-                                
-                                <p class="mb-2 mt-2"> Lugar: </p>
-                                <h:inputText class="form-control py-2" value="#{bd.lugara}"/>
-                             
-                            </div>
-                                <!--Descripción-->
-                            <div class="col-lg-6">
-                                
-                                <div>
-                                    <p class="mb-2 mt-2"> Descripción: </p> 
-                                    <h:inputTextarea rows = "10" cols = "53" readonly = "false" class="form-control" value="#{bd.descripciona}"/>
+                                    <!--Lugar donde se introducen los datos de la actividad-->
+                                    <div class="col-lg-6">
+
+                                        <p class="mb-2 mt-2"> Nombre: </p>
+                                        <h:inputText id="nombre" class="form-control py-2" value="#{bd.nombrea}" />
+
+                                        <p class="mb-2 mt-2"> Tipo: </p>
+                                        <h:selectOneMenu class="mt-2 mb-2 w-100 " id="so" value="#{bd.tipoa}">
+                                            <f:selectItem itemValue="1" itemLabel="   Voluntariado   " />
+                                            <f:selectItem itemValue="2" itemLabel="   Formacion   " />
+                                        </h:selectOneMenu>
+
+                                        <p class="mb-2 mt-2"> Fecha de inicio: </p>
+                                        <h:inputText id="fechaInicio" class="form-control py-2" value="#{bd.fechaInicioa}" />
+
+                                        <p class="mb-2 mt-2"> Fecha de fin: </p>
+                                        <h:inputText id="fechaFin" class="form-control py-2" value="#{bd.fechaFina}" />
+
+                                        <p class="mb-2 mt-2"> Lugar: </p>
+                                        <h:inputText id="lugar" class="form-control py-2" value="#{bd.lugara}" />
+
+                                    </div>
+                                    <!--Descripción-->
+                                    <div class="col-lg-6">
+
+                                        <div>
+                                            <p class="mb-2 mt-2"> Descripción: </p>
+                                            <h:inputTextarea id="descripcion" rows="10" cols="53" readonly="false" class="form-control"
+                                                value="#{bd.descripciona}" />
+                                        </div>
+                                        <div>
+                                            <h:commandButton class="btn btn-primary mt-5" value="Enviar"
+                                                action="#{bd.proponer()}" />
+                                            <a class="btn btn-primary ml-5 mt-5"
+                                                href="/Entrega2/faces/lista.xhtml">Cancelar</a>
+                                        </div>
+
+                                    </div>
+
                                 </div>
-                                <div>
-                                    <h:commandButton class="btn btn-primary mt-5" value="Enviar" action="#{bd.proponer()}" />
-                                    <a class="btn btn-primary ml-5 mt-5" href="/Entrega2/faces/lista.xhtml">Cancelar</a>
-                                </div>
-                                
-                            </div>
-                          
+                            </h:form>
                         </div>
-                        </h:form>
                     </div>
                 </div>
-                </div>
             </c:when>
-            
+
             <c:otherwise>
-                <meta http-equiv="refresh" content="0; url=/Entrega2/faces/error.xhtml?faces-redirect=true"/>
+                <meta http-equiv="refresh" content="0; url=/Entrega2/faces/error.xhtml?faces-redirect=true" />
             </c:otherwise>
-        </c:choose> 
-        
-            
-            
-        
+        </c:choose>
+
+
+
+
     </ui:define>
 </ui:composition>

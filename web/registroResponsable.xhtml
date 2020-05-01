@@ -81,13 +81,13 @@
 
                                                     <div>
                                                         <label for="Desc">Descripcion</label>
-                                                        <h:inputTextarea rows="6" cols="53" readonly="false"
+                                                        <h:inputTextarea rows="4" cols="53" readonly="false"
                                                             class="form-control py-4" value="#{bd.descripcion}" />
                                                     </div>
                                                 </div>
-                                                <!--</c:if>-->
-                                                <div class="form-group mt-4">
-                                                    <h:commandButton class="btn btn-primary btn-block " value="Crear cuenta"
+                                                <div class="d-flex justify-content-between mt-4">
+                                                    <h:commandButton class="btn btn-primary" value="Cancelar" action="#{controlAutorizacion.home()}" />
+                                                    <h:commandButton class="btn btn-primary" value="Crear cuenta"
                                                         action="#{bd.registrarResponsable()}" />
                                                 </div>
                                             </div>
