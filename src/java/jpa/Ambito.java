@@ -28,11 +28,10 @@ public class Ambito implements Serializable {
 	
 	@ManyToMany(mappedBy = "ambitos")//requiere
 	private List<Actividad> actividades;
+        
 	@ManyToMany//conoce
         @JoinTable(name = "USUARIO_AMBITO", joinColumns = { @JoinColumn(name = "usuario_fk") }, inverseJoinColumns = { @JoinColumn(name = "ambito_fk") })
 	private List<Usuario> usuarios;
-	@ManyToMany(mappedBy = "ambitos")//crea
-	private List<Administrador> administradores;
 	
 	public Ambito() {
 		super();

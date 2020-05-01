@@ -23,7 +23,7 @@ import javax.persistence.TemporalType;
  * @author David
  */
 @Entity
-public class Responsable extends Usuario_old implements Serializable {
+public class Responsable extends Usuario implements Serializable {
 
     
     @Column(unique=true)

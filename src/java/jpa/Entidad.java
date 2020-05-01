@@ -16,11 +16,12 @@ public class Entidad implements Serializable {
 	private String Descripcion;
 	@Column(unique= true)
 	private String Email;
+        
 	@ManyToMany(mappedBy = "entidades")//pertenece
 	private List <Afiliado> afiliados;
 	
 	@OneToMany//organiza
-	private List <Actividad> actividadesO;
+	private List <Actividad> actividades;
 	
 	public Entidad() { super(); }
 	

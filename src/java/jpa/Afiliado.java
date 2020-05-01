@@ -16,7 +16,7 @@ import javax.persistence.TemporalType;
 
 @Entity
 
-public class Afiliado extends Usuario_old implements Serializable {
+public class Afiliado extends Usuario implements Serializable {
     
     
 	@Column(unique=true)
@@ -29,8 +29,8 @@ public class Afiliado extends Usuario_old implements Serializable {
         @JoinTable(name = "AFILIADO_ENTIDADES", joinColumns = { @JoinColumn(name = "afiliado_fk") }, inverseJoinColumns = { @JoinColumn(name = "entidades_fk") })
 	private List<Entidad> entidades;
         
-        @OneToMany//valida
-        private List<Actividad> actividades;
+        @OneToMany//propone
+        private List <Actividad> propuesta;
 	
 	public Afiliado() {
 		super();

@@ -72,87 +72,6 @@ public class Actividad implements Serializable {
     @ManyToMany//participa
     @JoinTable(name = "ACTIVIDAD_USUARIOS", joinColumns = { @JoinColumn(name = "actividad_fk") }, inverseJoinColumns = { @JoinColumn(name = "usuarios_fk") })
     private List<Usuario> usuarios = new ArrayList<>();
-
-    public String getValoraciones() {
-        return valoraciones;
-    }
-
-    public void setValoraciones(String valoraciones) {
-        this.valoraciones = valoraciones;
-    }
-    
-    
-
-    public List<Curso> getCursos() {
-        return cursos;
-    }
-
-    public void setCursos(List<Curso> cursos) {
-        this.cursos = cursos;
-    }
-    
-    public void addUser(Usuario u){
-        if (!usuarios.contains(u)) {
-            usuarios.add(u);
-        }
-    }
-    
-    public void removeUser(Usuario u){
-        usuarios.remove(u);
-    }
-    
-    public boolean isUser(Usuario u){
-        return usuarios.contains(u);
-    }
-    
-    public List<Usuario> getUsuarios() {
-        if(usuarios==null)return new ArrayList<Usuario>();
-        return usuarios;
-    }
-
-    public void setUsuarios(List<Usuario> usuarios) {
-        this.usuarios = usuarios;
-    }
-
-    public List<Ambito> getAmbitos() {
-        return ambitos;
-    }
-
-    public void setAmbitos(List<Ambito> ambitos) {
-        this.ambitos = ambitos;
-    }
-
-    public Usuario getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
-    }
-
-    public Responsable getResponsable() {
-        return responsable;
-    }
-
-    public void setResponsable(Responsable responsable) {
-        this.responsable = responsable;
-    }
-
-    public Entidad getEntidadesO() {
-        return entidadesO;
-    }
-
-    public void setEntidadesO(Entidad entidadesO) {
-        this.entidadesO = entidadesO;
-    }
-
-    public Afiliado getAfiliado() {
-        return afiliado;
-    }
-
-    public void setAfiliado(Afiliado afiliado) {
-        this.afiliado = afiliado;
-    }
     
     @ManyToMany//requiere
     @JoinTable(name = "ACTIVIDAD_AMBITOS", joinColumns = { @JoinColumn(name = "actividad_fk") }, inverseJoinColumns = { @JoinColumn(name = "ambitos_fk") })
@@ -165,10 +84,7 @@ public class Actividad implements Serializable {
     private Responsable responsable;
     
     @ManyToOne//organiza
-    private Entidad entidadesO;
-    
-    @ManyToOne//Valida
-    private Afiliado afiliado;
+    private Entidad entidades;
     
     public Actividad (String nombre, tipo tipo, estado estado, Date fechaInicio, Date fechaFin, String descripcion, String lugar) {
     setNombre(nombre);
@@ -255,6 +171,81 @@ public class Actividad implements Serializable {
     public void setLugar(String lugar){
         this.Lugar=lugar;
     }
+    
+    
+    public String getValoraciones() {
+        return valoraciones;
+    }
+
+    public void setValoraciones(String valoraciones) {
+        this.valoraciones = valoraciones;
+    }
+    
+    
+
+    public List<Curso> getCursos() {
+        return cursos;
+    }
+
+    public void setCursos(List<Curso> cursos) {
+        this.cursos = cursos;
+    }
+    
+    public void addUser(Usuario u){
+        if (!usuarios.contains(u)) {
+            usuarios.add(u);
+        }
+    }
+    
+    public void removeUser(Usuario u){
+        usuarios.remove(u);
+    }
+    
+    public boolean isUser(Usuario u){
+        return usuarios.contains(u);
+    }
+    
+    public List<Usuario> getUsuarios() {
+        if(usuarios==null)return new ArrayList<Usuario>();
+        return usuarios;
+    }
+
+    public void setUsuarios(List<Usuario> usuarios) {
+        this.usuarios = usuarios;
+    }
+
+    public List<Ambito> getAmbitos() {
+        return ambitos;
+    }
+
+    public void setAmbitos(List<Ambito> ambitos) {
+        this.ambitos = ambitos;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
+    public Responsable getResponsable() {
+        return responsable;
+    }
+
+    public void setResponsable(Responsable responsable) {
+        this.responsable = responsable;
+    }
+
+    public Entidad getEntidadesO() {
+        return entidades;
+    }
+
+    public void setEntidades(Entidad entidades) {
+        this.entidades = entidades;
+    }
+    
     @Override
     public int hashCode() {
         int hash = 0;

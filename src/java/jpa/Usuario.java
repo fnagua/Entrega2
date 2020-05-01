@@ -57,12 +57,6 @@ public class Usuario implements Serializable {
     @ManyToMany(mappedBy = "usuarios")//participa
     private List <Actividad> actividades;
 
-    @OneToMany//propone
-    private List <Actividad> propuesta;
-
-    @ManyToMany(mappedBy = "usuarios")
-    private List<Administrador> administrador;
-
     @ManyToMany(mappedBy = "usuarios")//conoce
     private List <Ambito> ambitos;
 
