@@ -63,7 +63,7 @@ public class Actividad implements Serializable {
     
     private String Lugar;
     
-    private String valoraciones;
+    private String valoraciones = "";
     
     @ManyToMany//requiere
     @JoinTable(name = "ACTIVIDAD_CURSOS", joinColumns = { @JoinColumn(name = "actividad_fk") }, inverseJoinColumns = { @JoinColumn(name = "cursos_fk") })
@@ -174,7 +174,7 @@ public class Actividad implements Serializable {
     
     
     public String getValoraciones() {
-        return valoraciones;
+        return this.valoraciones;
     }
 
     public void setValoraciones(String valoraciones) {
@@ -206,7 +206,6 @@ public class Actividad implements Serializable {
     }
     
     public List<Usuario> getUsuarios() {
-        if(usuarios==null)return new ArrayList<Usuario>();
         return usuarios;
     }
 

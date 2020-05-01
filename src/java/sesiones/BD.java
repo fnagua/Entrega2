@@ -482,18 +482,11 @@ public class BD implements Serializable {
             case "5": sb.append("totalmente satisfecho");
             break;
         }
-        sb.append(" con esta actividad.  ");
-        sb.append(System.getProperty("line.separator"));
+        sb.append(" con esta actividad. \n");
         sb.append(val);
-        setValoracion(sb.toString());
-        Actividad act = getActividad(mostrarActividad.getId());
-        Actividad aux = act;
-        actividades.remove(act);
-        aux.setValoraciones(sb.toString());
-        actividades.add(aux);
+        mostrarActividad.setValoraciones(sb.toString());
         valoracion="";
         val="";
-        setMostrarActividad(aux);
     }
     public String validar(){//ADMIN,RESPONSABLE,AFILIADO
         mostrarActividad.setEstado(estado.Disponible);
