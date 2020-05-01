@@ -1,74 +1,78 @@
-<ui:composition 
-    xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-    xmlns:h="http://xmlns.jcp.org/jsf/html"
-    xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
-    >
-    
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
     <c:choose>
-    <c:when test="#{empty controlAutorizacion.usuario}">
-           
-        <head>
-        <meta content=""/>
-        <title>
-            Login
-        </title>
-        <link href="resources/css/styles.css" rel="stylesheet" />
-    </head>
-    <body class="bg-primary">
-        <div id="layoutAuthentication">
-            <div id="layoutAuthentication_content">
-                <div class="container">
-                    <div></div>
-                    <div class="row justify-content-center">
-                        <div class="col-lg-5">
-                            <div class="card shadow-lg border-0 rounded-lg mt-5">
-                                <div class="card-header">
-                                    <h3 class="text-center font-weight-light my-4">
-                                        Login
-                                    </h3>
-                                </div>
-                                <div class="card-body">
-                                    <h:form id="login">
-                                        <div class="form-group">
-                                            <label class="small mt-1">Nombre Usuario</label>
-                                            <h:inputText class="form-control py-4" value="#{bd.usuario}"/>
+        <c:when test="#{empty controlAutorizacion.usuario}">
+
+            <head>
+                <meta content="" />
+                <title>
+                    Login
+                </title>
+                <link href="resources/css/styles.css" rel="stylesheet" />
+            </head>
+
+            <body class="bg-primary">
+                <div id="layoutAuthentication">
+                    <div id="layoutAuthentication_content">
+                        <div class="container">
+                            <div></div>
+                            <div class="row justify-content-center">
+                                <div class="col-lg-5">
+                                    <div class="card shadow-lg border-0 rounded-lg mt-5">
+                                        <div class="card-header">
+                                            <h3 class="text-center font-weight-light my-4">
+                                                Login
+                                            </h3>
                                         </div>
-                                        <div class="form-group">
-                                            <label class="small mt-1">Password</label>
-                                            <h:inputSecret class="form-control py-4" value="#{bd.contrasenia}"/>
+                                        <div class="card-body">
+                                            <h:form id="login">
+                                                <div class="form-group">
+                                                    <label class="small mt-1">Nombre Usuario</label>
+                                                    <h:inputText class="form-control py-4" value="#{bd.usuario}" />
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="small mt-1">Password</label>
+                                                    <h:inputSecret class="form-control py-4"
+                                                        value="#{bd.contrasenia}" />
+                                                </div>
+                                                <div
+                                                    class="form-group d-flex align-items-center justify-content-between mt-4">
+
+                                                    <a class="btn btn-primary"
+                                                        href="/Entrega2/faces/lista.xhtml">Cancelar</a>
+
+                                                    <h:commandButton class="btn btn-primary" value="Autenticar"
+                                                        action="#{bd.autenticar()}" />
+
+                                                </div>
+                                                <div class="d-flex justify-content-center mt-4">
+                                                    <a class="d-flex mt-4" title="Logo Uma" href="https://www.uma.es">
+                                                        <img src="resources/img/logo-umaes.png" />
+                                                    </a>
+                                                </div>
+                                            </h:form>
                                         </div>
-                                        <div class="form-group d-flex align-items-center justify-content-between mt-4">
-                                            
-                                            <a class="btn btn-primary" href="/Entrega2/faces/lista.xhtml">Cancelar</a>
-                                            
-                                            <h:commandButton class="btn btn-primary" value="Autenticar" action="#{bd.autenticar()}" />
-                                            
+                                        <div class="card-footer text-center">
+                                            <div class="small"><a href="/Entrega2/faces/registro.xhtml">¿No tiene una
+                                                    cuenta? Registrate</a></div>
                                         </div>
-                                        <div class="d-flex justify-content-center mt-4">
-                                            <a class="d-flex mt-4" title="Logo Uma" href="https://www.uma.es">
-                                                <img src="resources/img/logo-umaes.png"/>
-                                            </a>
-                                        </div>
-                                    </h:form>
-                                </div>
-                                <div class="card-footer text-center">
-                                        <div class="small"><a href="/Entrega2/faces/registro.xhtml">¿No tiene una cuenta? Registrate</a></div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </body>
-        
-    </c:when>
-    <c:otherwise>
-        <p>#######################3MOSTRAR PAGINA ERROR</p>        
-    </c:otherwise>
-        
+            </body>
+
+        </c:when>
+        <c:otherwise>
+            <p>#######################3MOSTRAR PAGINA ERROR</p>
+        </c:otherwise>
+
     </c:choose>
-    <h:messages/>
-    
-</ui:composition>
+
+</html>
