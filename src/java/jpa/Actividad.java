@@ -63,6 +63,8 @@ public class Actividad implements Serializable {
     
     private String Lugar;
     
+    private String valoraciones;
+    
     @ManyToMany//requiere
     @JoinTable(name = "ACTIVIDAD_CURSOS", joinColumns = { @JoinColumn(name = "actividad_fk") }, inverseJoinColumns = { @JoinColumn(name = "cursos_fk") })
     private List<Curso> cursos;
@@ -79,7 +81,7 @@ public class Actividad implements Serializable {
         this.valoraciones = valoraciones;
     }
     
-    private String valoraciones;
+    
 
     public List<Curso> getCursos() {
         return cursos;

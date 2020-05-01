@@ -96,7 +96,7 @@
                                 <div class="card-header">Valoraciones</div>
                                 <div class="card-body">
                                     <div class="table-responsive">
-                                         <h:outputText value="#{bd.getActividad().valoraciones}"/>
+                                         <h:outputText value="#{bd.getActividad().getValoraciones()}"/>
                                     </div>
                                 </div>
                             </div>
@@ -117,19 +117,18 @@
                                     <div class="card-body">
                                         <div class="table-responsive">
                                             <!--<div class="mb-4"><input class="form-control py-4" id="inputValoracion" placeholder="Quiero poner un slider https://seiyria.com/bootstrap-slider/"/></div>-->
-                                             <h:form>
-                                            <h:selectOneMenu class="mt-2 mb-4" id="so" >
-                                                <div>Califica la actividad:*</div>
-                                                            <f:selectItem itemValue="1" itemLabel="NADA SATISFECHO"/>
-                                                            <f:selectItem itemValue="2" itemLabel="POCO SATISFECHO"/>
-                                                            <f:selectItem itemValue="3" itemLabel="SATISFECHO"/>
-                                                            <f:selectItem itemValue="4" itemLabel="MUY SATISFECHO"/>
-                                                            <f:selectItem itemValue="5" itemLabel="TOTALMENTE SATISFECHO"/>
-                                            </h:selectOneMenu>
-                                            <div class="mb-2">Un breve comentario sobre su experiencia:*</div>
-                                            <div class="mb-4"><h:inputTextarea rows = "15" readonly = "false" class="form-control"/></div>
-
-                                            <h:commandButton class="btn btn-primary mt-5" value="Valorar" />
+                                            <h:form>
+                                                <h:selectOneMenu class="mt-2 mb-4" id="so" value="#{bd.valoracion}" >
+                                                    <div>Califica la actividad:*</div>
+                                                                <f:selectItem itemValue="1" itemLabel="NADA SATISFECHO"/>
+                                                                <f:selectItem itemValue="2" itemLabel="POCO SATISFECHO"/>
+                                                                <f:selectItem itemValue="3" itemLabel="SATISFECHO"/>
+                                                                <f:selectItem itemValue="4" itemLabel="MUY SATISFECHO"/>
+                                                                <f:selectItem itemValue="5" itemLabel="TOTALMENTE SATISFECHO"/>
+                                                </h:selectOneMenu>
+                                                <div class="mb-2">Un breve comentario sobre su experiencia:*</div>
+                                                <div class="mb-4"><h:inputTextarea rows = "15" class="form-control" value="#{bd.val}"/></div>
+                                                <h:commandButton class="btn btn-primary mt-5" value="Valorar" action="#{bd.valorar()}"/>
                                             </h:form>
                                         </div>
                                     </div>

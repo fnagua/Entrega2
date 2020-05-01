@@ -48,6 +48,7 @@ public class BD implements Serializable {
     private String numero;
     private String descripcion;
     private String dni;
+    
 
     //Crear nueva actividad
     private String nombrea;
@@ -56,7 +57,33 @@ public class BD implements Serializable {
     private String numParticipantesa;
     private String lugara;
     private String descripciona;
+    private String tipoa;
+    private String valoracion;
+    private String val;
+
+    public String getVal() {
+        return val;
+    }
+
+    public void setVal(String val) {
+        this.val = val;
+    }
+
+    public String getValoracion() {
+        return valoracion;
+    }
+
+    public void setValoracion(String valoracion) {
+        this.valoracion = valoracion;
+    }
     
+    public String getTipoa() {
+        return tipoa;
+    }
+
+    public void setTipoa(String tipoa) {
+        this.tipoa = tipoa;
+    }
     
     private String elegir;
     private Usuario.Rol rol;
@@ -420,13 +447,50 @@ public class BD implements Serializable {
             System.out.println(fechaInicioa);
             System.out.println(fechaFina);
         }
-        
-        Actividad acti = new Actividad(nombrea, tipo.Formacion,estado.Pendiente, fechaa, fechab, descripciona, lugara);
+        tipo tip;
+        if(tipoa.equals("1")){
+            tip = tipo.Voluntariado;
+        }else{
+            tip = tipo.Formacion;
+        }
+        Actividad acti = new Actividad(nombrea,tip,estado.Pendiente, fechaa, fechab, descripciona, lugara);
         actividades.add(acti);
-        
+        nombrea="";
+        fechaa=null;
+        fechab=null;
+        descripciona="";
+        lugara="";
         //return actividad(b);
         setMostrarActividad(acti);
         return "actividad.xhtml?faces-redirect=true";
         
+    }
+    public void valorar(){
+        StringBuilder sb = new StringBuilder();
+        sb.append("Estoy ");
+        switch(valoracion){
+            case "1": sb.append("nada satisfecho");
+            break;
+            case "2": sb.append("poco satisfecho");
+            break;
+            case "3": sb.append("satisfecho");
+            break;
+            case "4": sb.append("muy satisfecho");
+            break;
+            case "5": sb.append("totalmente satisfecho");
+            break;
+        }
+        sb.append(" con esta actividad.  ");
+        sb.append(System.getProperty("line.separator"));
+        sb.append(val);
+        setValoracion(sb.toString());
+        Actividad act = getActividad(mostrarActividad.getId());
+        Actividad aux = act;
+        actividades.remove(act);
+        aux.setValoraciones(sb.toString());
+        actividades.add(aux);
+        valoracion="";
+        val="";
+        setMostrarActividad(aux);
     }
 }
