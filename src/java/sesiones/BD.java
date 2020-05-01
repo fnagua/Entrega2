@@ -50,6 +50,9 @@ public class BD implements Serializable {
     private String elegir;
     private Usuario.Rol rol;
 
+    @Inject
+    private ControlAutorizacion ctrl;
+    
     public static void setActividades(List<Actividad> actividades) {
         BD.actividades = actividades;
     }
@@ -76,17 +79,14 @@ public class BD implements Serializable {
         this.ctrl = ctrl;
     }
 
-    @Inject
-    private ControlAutorizacion ctrl;
-
     public BD() throws Exception {
         // USUARIOS
         usuarios = new ArrayList<Usuario>();
 
         usuarios.add(new Usuario("fran", "aasdf@uma.es","Francisco", "asdf asdf", "asdf", Usuario.Rol.VOLUNTARIO));
-        usuarios.add(new Usuario("miguel", "assdf@uma.es","Francisco", "asdf asdf", "asdf", Usuario.Rol.AFILIADO));
-        usuarios.add(new Usuario("raul", "asddf@uma.es","Francisco", "asdf asdf", "asdf", Usuario.Rol.ADMINISTRADOR));
-        usuarios.add(new Usuario("david", "asdff@uma.es","Francisco", "asdf asdf", "asdf", Usuario.Rol.RESPONSABLE));
+        usuarios.add(new Usuario("miguel", "assdf@uma.es","Miguel", "asdf asdf", "asdf", Usuario.Rol.AFILIADO));
+        usuarios.add(new Usuario("raul", "asddf@uma.es","Raul", "asdf asdf", "asdf", Usuario.Rol.ADMINISTRADOR));
+        usuarios.add(new Usuario("david", "asdff@uma.es","David", "asdf asdf", "asdf", Usuario.Rol.RESPONSABLE));
 
         // ACTIVIDADES
         actividades = new ArrayList<Actividad>();
@@ -315,5 +315,29 @@ public class BD implements Serializable {
             break;
         }
          return s;
+    }
+    
+    public String modificarUsuario() {
+        Usuario user = ctrl.getUsuario();
+        if(!nombre.equals("")) {
+            user.setNombre(nombre);
+            nombre="";
+        }
+        if(!apellidos.equals("")) {
+            user.setApellidos(apellidos);
+            apellidos="";
+        }
+        
+        if(!usuarioo.equals("")) {
+            user.setUsuario(usuarioo);
+            usuarioo="";
+        }
+        
+        if(!email.equals("")) {
+            user.setEmail(email);
+            email="";
+        }
+        ctrl.setUsuario(user);
+        return "perfil.xhtml";
     }
 }

@@ -9,62 +9,83 @@
         <ui:define name="content">
             <c:choose>
                 <c:when test="#{not empty controlAutorizacion.usuario}">
-            <div class="container-fluid">
-              <h1 class="mt-4">
-                <h:outputText value="#{controlAutorizacion.usuario.usuario}"/>
-              </h1>
-              <div class="card mb-4">
-                <div class="card-header">
-                  Información de contacto
-                </div>
-                <div class="card-body">
-                  <div class="table-responsive">
-                    <p>
-                      Email: ####
-                    </p>
-                    <p>
-                      lef: ####
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div class="card mb-4">
-                <div class="card-header">
-                  Actividades actuales
-                </div>
-                <div class="card-body">
-                  <div class="table-responsive">
-                    <p>
-                      lista de actividades
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div class="card mb-4">
-                <div class="card-header">
-                  Actividades anteriores
-                </div>
-                <div class="card-body">
-                  <div class="table-responsive">
-                    <p>
-                      lista de actividades
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div class="form-group d-flex align-items-center justify-content-between mt-4">
-                  <h:form>
-                <h:commandButton class="btn btn-primary" value="Editar" action="#{controlAutorizacion.editarPerfil()}"/>
-                  </h:form>
-                 <!-- vuelve a perfil -->
-              </div>
-            </div>
-            </c:when>
-                            <c:otherwise>
-
-                                <p>###########AQUI VA LA PAGINA DE ERROR</p>
-                            </c:otherwise>
-                 </c:choose>
+                    <div class="container-fluid">
+                        <h1 class="mt-4">
+                            Perfil de
+                            <h:outputText value="#{controlAutorizacion.usuario.nombre}"/>
+                        </h1>
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <a><i class="fas fa-id-card-alt mr-2"></i></a>
+                                Información Personal
+                            </div>
+                            <div class="card-body">
+                                <div class="ml-2 mt-2">
+                                    <b>Nombre<br/></b>
+                                    <h:outputText value="#{controlAutorizacion.usuario.nombre}"/>
+                                    <b><br/>Apellidos<br/></b>
+                                    <h:outputText value="#{controlAutorizacion.usuario.apellidos}"/>
+                                    <b><br/>Alias<br/></b>
+                                    <h:outputText value="#{controlAutorizacion.usuario.usuario}"/>
+                                    <b><br/>Rol<br/></b>
+                                    <h:outputText value="#{controlAutorizacion.usuario.rol}"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <a><i class="fas fa-phone mr-2"></i></a>
+                                Información de contacto
+                            </div>
+                            <div class="card-body">
+                                <div class="ml-2 mt-2">
+                                    <b>Email<br/></b>
+                                    <h:outputText value="#{controlAutorizacion.usuario.email}"/>
+                                    <b><br/>Nº Teléfono<br/></b>
+                                    ####FALTA EL NUM TELF####
+                                    <h:outputText value="#{controlAutorizacion.usuario.email}"/>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        
+                        
+                      <div class="card mb-4">
+                        <div class="card-header">
+                          Actividades actuales
+                        </div>
+                        <div class="card-body">
+                          <div class="table-responsive">
+                            <p>
+                              lista de actividades
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="card mb-4">
+                        <div class="card-header">
+                          Actividades anteriores
+                        </div>
+                        <div class="card-body">
+                          <div class="table-responsive">
+                            <p>
+                              lista de actividades
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="form-group d-flex align-items-center justify-content-between mt-4">
+                          <h:form>
+                        <h:commandButton class="btn btn-primary" value="Editar" action="#{controlAutorizacion.editarPerfil()}"/>
+                          </h:form>
+                         <!-- vuelve a perfil -->
+                      </div>
+                    </div>
+                </c:when>
+                <c:otherwise>
+                    <p>###########AQUI VA LA PAGINA DE ERROR</p>
+                </c:otherwise>
+            </c:choose>
         </ui:define>
    
 </ui:composition>

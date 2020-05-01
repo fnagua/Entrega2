@@ -4,119 +4,61 @@
     xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
     xmlns:h="http://xmlns.jcp.org/jsf/html"
     xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+    xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
     >
     <ui:define name="title">Editar Perfil</ui:define>
     <ui:define name="content">
-            <c:choose>
+        <c:choose>
             <c:when test="#{not empty controlAutorizacion.usuario}">
-                
+                <h:form>
                     <div class="container-fluid">
-                      <h1 class="mt-4">
-                        Editar Perfil
-                      </h1>
-                      <div class="card mb-4">
-                        <div class="card-header">
-                          Nombre
-                        </div>
-                        <div class="card-body">
-                          <div class="table-responsive">
-                            <p><h:outputText value="#{controlAutorizacion.usuario.usuario}"/></p>
-                            <div class="form-group">
-                              <input class="form-control py-4" id="inputNombre" />
+                        <h1 class="mt-4">
+                            Editar el perfil de
+                            <h:outputText value="#{controlAutorizacion.usuario.nombre}"/>
+                            <i class="fas fa-pencil-alt"></i>
+                        </h1>
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <a><i class="fas fa-id-card-alt mr-2"></i></a>
+                                Información Personal
                             </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="card mb-4">
-                        <div class="card-header">
-                          Apellido
-                        </div>
-                        <div class="card-body">
-                          <div class="table-responsive">
-                            <p>
-                              ##actual##
-                            </p>
-                            <div class="form-group">
-                              <input class="form-control py-4" id="inputApellido" />
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <b>Nombre<br/></b>
+                                    <h:inputText class="form-control py-4" a:placeholder="#{controlAutorizacion.usuario.nombre}" value="#{bd.nombre}"/>
+                                    <b>Apellidos<br/></b>
+                                    <h:inputText class="form-control py-4" a:placeholder="#{controlAutorizacion.usuario.apellidos}" value="#{bd.apellidos}"/>
+                                    <b>Alias<br/></b>
+                                    <h:inputText class="form-control py-4" a:placeholder="#{controlAutorizacion.usuario.usuario}" value="#{bd.usuarioo}"/>
+                                </div>
                             </div>
-                          </div>
                         </div>
-                      </div>
-                      <div class="card mb-4">
-                        <div class="card-header">
-                          Email
-                        </div>
-                        <div class="card-body">
-                          <div class="table-responsive">
-                            <p>
-                              ##actual##
-                            </p>
-                            <div class="form-group">
-                              <input class="form-control py-4" id="inputEmailAddress" />
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <a><i class="fas fa-phone mr-2"></i></a>
+                                Información de contacto
                             </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="card mb-4">
-                        <div class="card-header">
-                          Nº teléfono
-                        </div>
-                        <div class="card-body">
-                          <div class="table-responsive">
-                            <p>
-                              ##actual##
-                            </p>
-                            <div class="form-group">
-                              <input class="form-control py-4" id="inputNtelf" />
+                            <div class="card-body">
+                                <div class="form-group mb-2">
+                                    <b>Email<br/></b>
+                                    <h:inputText class="form-control py-4" a:placeholder="#{controlAutorizacion.usuario.email}" value="#{bd.email}"/>
+                                    <b>Nº Teléfono<br/></b>
+                                    <h:inputText class="form-control py-4" a:placeholder="#{controlAutorizacion.usuario.email}##FALTA Nº TLF##"/>
+                                </div>
                             </div>
-                          </div>
                         </div>
-                      </div>
-                      <div class="card mb-4">
-                        <div class="card-header">
-                          DNI
-                        </div>
-                        <div class="card-body">
-                          <div class="table-responsive">
-                            <p>
-                              ##actual##
-                            </p>
-                            <div class="form-group">
-                              <input class="form-control py-4" id="inputDNI" />
+                        <div class="form-group d-flex align-items-center justify-content-between mt-4">
+                            <a class="btn btn-primary" href="/Entrega2/faces/perfil.xhtml">Cancelar</a>
+                            <div class="form-group mt-4">
+                                <h:commandButton class="btn btn-primary btn-block " value="Aplicar cambios" action="#{bd.modificarUsuario()}" />
                             </div>
-                          </div>
                         </div>
-                      </div>
-                      <div class="card mb-4">
-                        <div class="card-header">
-                          Descripción
-                        </div>
-                        <div class="card-body">
-                          <div class="table-responsive">
-                            <p>
-                              ##actual##
-                            </p>
-                            <div class="form-group">
-                              <input class="form-control py-4" id="inputDescripcion" />
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="form-group d-flex align-items-center justify-content-between mt-4">
-                        <a class="btn btn-primary" href="/Entrega2/faces/perfil.xhtml">Cancelar</a>
-                         <!-- vuelve a perfil --> 
-                         <a class="btn btn-primary" href="/Entrega2/faces/perfil.xhtml">Aplicar cambios</a>
-                         <!--  llama a la funcion y vuelve a perfil -->
-                      </div>
-                    </div> 
-                         </c:when>
-                            <c:otherwise>
-
-                                <p>AQUI VA LA PAGINA DE ERROR</p>
-                            </c:otherwise>
-                        </c:choose>
-                </ui:define>
-    
-    
-      
+                    </div>
+                </h:form>
+            </c:when>
+            <c:otherwise>
+                <p>AQUI VA LA PAGINA DE ERROR</p>
+            </c:otherwise>
+        </c:choose>
+    </ui:define>
 </ui:composition>
