@@ -31,14 +31,16 @@ import sesiones.ControlAutorizacion;
 //@RequestScoped
 public class BD implements Serializable {
 
+    //Login
     private String usuario;
     private String contrasenia;
 
-    private static List<Usuario> usuarios;
-    private static List<Actividad> actividades;
-    private static Actividad mostrarActividad;
+    private List<Usuario> usuarios;
+    private List<Actividad> actividades;
+    //Actividad Actual
+    private Actividad mostrarActividad;
 
-    //Crear nuevo Usuario
+    //Crear nuevo Usuario y modificar perfil
     private String tipoUsuario;
     private String usuarioo;
     private String email;
@@ -50,7 +52,7 @@ public class BD implements Serializable {
     private String dni;
     
 
-    //Crear nueva actividad
+    // Crear nueva actividad
     private String nombrea;
     private String fechaInicioa;
     private String fechaFina;
@@ -70,7 +72,7 @@ public class BD implements Serializable {
 
     public BD() throws Exception {
         // USUARIOS
-        usuarios = new ArrayList<Usuario>();
+        usuarios = new ArrayList<>();
 
         usuarios.add(new Usuario("fran", "aasdf@uma.es","Francisco", "asdf asdf", "asdf", Usuario.Rol.VOLUNTARIO));
         usuarios.add(new Usuario("miguel", "assdf@uma.es","Miguel", "asdf asdf", "asdf", Usuario.Rol.AFILIADO));
@@ -78,13 +80,12 @@ public class BD implements Serializable {
         usuarios.add(new Usuario("david", "asdff@uma.es","David", "asdf asdf", "asdf", Usuario.Rol.RESPONSABLE));
 
         // ACTIVIDADES
-        actividades = new ArrayList<Actividad>();
+        actividades = new ArrayList<>();
 
-        actividades.add(new Actividad("Actividad_Disponible", tipo.Formacion,   estado.Disponible, new SimpleDateFormat("dd/MM/yyyy").parse("30/12/2020"), new SimpleDateFormat("dd/MM/yyyy").parse("31/12/2020"), "Descripcion Actividad_Disponible", "Estepona"));
         actividades.add(new Actividad("Actividad_Disponible", tipo.Formacion,   estado.Disponible, new SimpleDateFormat("dd/MM/yyyy").parse("30/12/2020"), new SimpleDateFormat("dd/MM/yyyy").parse("31/12/2020"), "Descripcion Actividad_Disponible", "Estepona"));
         actividades.add(new Actividad("Actividad_Finalizada", tipo.Formacion,   estado.Finalizada, new SimpleDateFormat("dd/MM/yyyy").parse("01/01/2019"), new SimpleDateFormat("dd/MM/yyyy").parse("01/01/2019"), "Descripcion Actividad_Finalizada", "Málaga"));
         actividades.add(new Actividad("Actividad_Pendiente",  tipo.Voluntariado,estado.Pendiente, new SimpleDateFormat("dd/MM/yyyy").parse("09/06/2020"), new SimpleDateFormat("dd/MM/yyyy").parse("11/06/2020"), "Descripcion Actividad_Pendiente", "Marbella"));
-        actividades.add(new Actividad("Actividad_RECHAZADA",  tipo.Voluntariado,estado.Rechazada, new SimpleDateFormat("dd/MM/yyyy").parse("09/06/2020"), new SimpleDateFormat("dd/MM/yyyy").parse("11/06/2020"), "Descripcion Actividad_Pendiente", "Marbella"));
+        actividades.add(new Actividad("Actividad_Rechazada",  tipo.Voluntariado,estado.Rechazada, new SimpleDateFormat("dd/MM/yyyy").parse("09/06/2020"), new SimpleDateFormat("dd/MM/yyyy").parse("11/06/2020"), "Descripcion Actividad_Pendiente", "Marbella"));
     }
     
     public String getVal() {
@@ -129,23 +130,23 @@ public class BD implements Serializable {
     public void setContrasenia(String contrasenia) {
         this.contrasenia = contrasenia;
     }
-     public static void setActividades(List<Actividad> actividades) {
-        BD.actividades = actividades;
+     public void setActividades(List<Actividad> actividades) {
+        this.actividades = actividades;
     }
-    public static List<Usuario> getUsuarios() {
+    public List<Usuario> getUsuarios() {
         return usuarios;
     }
 
-    public static void setUsuarios(List<Usuario> usuarios) {
-        BD.usuarios = usuarios;
+    public void setUsuarios(List<Usuario> usuarios) {
+        this.usuarios = usuarios;
     }
 
-    public static Actividad getMostrarActividad() {
+    public Actividad getMostrarActividad() {
         return mostrarActividad;
     }
 
-    public static void setMostrarActividad(Actividad mostrarActividad) {
-        BD.mostrarActividad = mostrarActividad;
+    public void setMostrarActividad(Actividad mostrarActividad) {
+        this.mostrarActividad = mostrarActividad;
     }
     public ControlAutorizacion getCtrl() {
         return ctrl;
@@ -285,8 +286,8 @@ public class BD implements Serializable {
         this.lugara = lugara;
     }
 
-  
-
+    
+    
     public String getDescripciona() {
         return descripciona;
     }
@@ -298,7 +299,7 @@ public class BD implements Serializable {
     public Actividad getActividad(Long id){
          Actividad res = null;
         for(Actividad a : actividades){
-            if(a.getId()==id){
+            if(a.getId() == id){
                 res = a;
             }
         }
@@ -307,7 +308,7 @@ public class BD implements Serializable {
    
 
     public List<Actividad> getActividadesDisponibles(){
-        List<Actividad> ad = new ArrayList<Actividad>();
+        List<Actividad> ad = new ArrayList<>();
 
         for (Actividad a : actividades) {
             if(a.getEstado().equals(estado.Disponible))
@@ -317,7 +318,7 @@ public class BD implements Serializable {
         return ad;
     }
     public List<Actividad> getActividadesFinalizadas(){
-        List<Actividad> af = new ArrayList<Actividad>();
+        List<Actividad> af = new ArrayList<>();
 
         for (Actividad a : actividades) {
             if(a.getEstado().equals(estado.Finalizada))
@@ -327,7 +328,7 @@ public class BD implements Serializable {
         return af;
     }
     public List<Actividad> getActividadesPendientes(){
-        List<Actividad> ap = new ArrayList<Actividad>();
+        List<Actividad> ap = new ArrayList<>();
 
         for (Actividad a : actividades) {
             if(a.getEstado().equals(estado.Pendiente))
@@ -338,7 +339,7 @@ public class BD implements Serializable {
     }
 
     public List<Actividad> getActividadesRechazadas(){
-        List<Actividad> ar = new ArrayList<Actividad>();
+        List<Actividad> ar = new ArrayList<>();
 
         for (Actividad a : actividades) {
             if(a.getEstado().equals(estado.Rechazada))
