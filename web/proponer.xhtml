@@ -9,7 +9,7 @@
     <ui:define name="title">Lista Actividades</ui:define>
     <ui:define name="content">
         <c:choose>
-            <c:when test="#{controlAutorizacion.usuario.rol == 'AFILIADO'}">
+            <c:when test="#{controlAutorizacion.usuario.rol == 'AFILIADO' || controlAutorizacion.usuario.rol == 'ADMINISTRADOR'}">
                 <!--Nombre, Tipo, Estado, FechaInicio, FechaFin, Descripcion, NumParticipantes, Lugar-->
                 <div class ="container-fluid">
                 <h1 class="mt-4"> Nueva Actividad </h1>

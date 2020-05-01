@@ -8,7 +8,7 @@
     <ui:define name="title">Lista Actividades</ui:define>
     <ui:define name="content">
         <c:choose>
-            <c:when test="#{controlAutorizacion.usuario.rol == 'RESPONSABLE'}">
+            <c:when test="#{controlAutorizacion.usuario.rol == 'RESPONSABLE' || controlAutorizacion.usuario.rol == 'ADMINISTRADOR'}">
                     <div class="container-fluid">
                         <h1 class="mt-4">Actividades</h1>
                     </div>
