@@ -7,66 +7,74 @@
     >
     <ui:define name="title">Lista Actividades</ui:define>
     <ui:define name="content">
-        <div class="container-fluid">
-            <h1 class="mt-4">Actividades</h1>
-        </div>
-        <div class="card mb-4 mt-4">
-            <div class="card-header"><i class="fas fa-pause mr-1" /> Pendientes</div>
-            <div class="card-body">
-                <h:form>
-                    <div class="row">
-                        <c:forEach var="a" items="#{bd.getActividadesPendientes()}">
-                            <div class="col-xl-3 col-md-6">
-                                <div class="card mb-2">
-                                    <div class="card-header  text-center">
-                                            <a><i class="far fa-dot-circle mr-2" /></a>
-                                            <h:outputText value="#{a.nombre}"/>
-                                        </div>
-                                    <div class="card-body">
-                                        <div class="ml-2 mt-2"><b>Tipo<br/></b><h:outputText value="#{a.tipo}"/></div>
-                                        <div class="ml-2 mt-2"><b>Fecha Inicio<br/></b><h:outputText value="#{a.fechaInicio}"/></div>
-                                        <div class="ml-2 mt-2"><b>Fecha Fin<br/></b><h:outputText value="#{a.fechaFin}"/></div>          
-                                        <div class="ml-2 mt-2"><b>Lugar<br/></b><h:outputText value="#{a.lugar}"/></div>
-                                        <div class="ml-2 mt-2"><b>Descripción<br/></b><h:outputText value="#{a.descripcion}"/></div>
-                                    </div>
-                                    <div class="card-footer text-right">
-                                            <h:commandButton class="btn btn-primary" value="Acceder" action="#{bd.actividad(a)}"/>
-                                        </div>
-                                </div>
-                            </div>
-                        </c:forEach>
+        <c:choose>
+            <c:when test="#{controlAutorizacion.usuario.rol == 'RESPONSABLE'}">
+                    <div class="container-fluid">
+                        <h1 class="mt-4">Actividades</h1>
                     </div>
-                </h:form>
-            </div>
-        </div>
-        <div class="card mb-4 mt-4">
-            <div class="card-header"><i class="fas fas fa-times mr-1" /> Rechazadas</div>
-            <div class="card-body">
-                <h:form>
-                    <div class="row">
-                        <c:forEach var="a" items="#{bd.getActividadesRechazadas()}">
-                            <div class="col-xl-3 col-md-6">
-                                <div class="card mb-2">
-                                    <div class="card-header  text-center">
-                                            <a><i class="far fa-dot-circle mr-2" /></a>
-                                            <h:outputText value="#{a.nombre}"/>
+                    <div class="card mb-4 mt-4">
+                        <div class="card-header"><i class="fas fa-pause mr-1" /> Pendientes</div>
+                        <div class="card-body">
+                            <h:form>
+                                <div class="row">
+                                    <c:forEach var="a" items="#{bd.getActividadesPendientes()}">
+                                        <div class="col-xl-3 col-md-6">
+                                            <div class="card mb-2">
+                                                <div class="card-header  text-center">
+                                                        <a><i class="far fa-dot-circle mr-2" /></a>
+                                                        <h:outputText value="#{a.nombre}"/>
+                                                    </div>
+                                                <div class="card-body">
+                                                    <div class="ml-2 mt-2"><b>Tipo<br/></b><h:outputText value="#{a.tipo}"/></div>
+                                                    <div class="ml-2 mt-2"><b>Fecha Inicio<br/></b><h:outputText value="#{a.fechaInicio}"/></div>
+                                                    <div class="ml-2 mt-2"><b>Fecha Fin<br/></b><h:outputText value="#{a.fechaFin}"/></div>          
+                                                    <div class="ml-2 mt-2"><b>Lugar<br/></b><h:outputText value="#{a.lugar}"/></div>
+                                                    <div class="ml-2 mt-2"><b>Descripción<br/></b><h:outputText value="#{a.descripcion}"/></div>
+                                                </div>
+                                                <div class="card-footer text-right">
+                                                        <h:commandButton class="btn btn-primary" value="Acceder" action="#{bd.actividad(a)}"/>
+                                                    </div>
+                                            </div>
                                         </div>
-                                    <div class="card-body">
-                                        <div class="ml-2 mt-2"><b>Tipo<br/></b><h:outputText value="#{a.tipo}"/></div>
-                                        <div class="ml-2 mt-2"><b>Fecha Inicio<br/></b><h:outputText value="#{a.fechaInicio}"/></div>
-                                        <div class="ml-2 mt-2"><b>Fecha Fin<br/></b><h:outputText value="#{a.fechaFin}"/></div>          
-                                        <div class="ml-2 mt-2"><b>Lugar<br/></b><h:outputText value="#{a.lugar}"/></div>
-                                        <div class="ml-2 mt-2"><b>Descripción<br/></b><h:outputText value="#{a.descripcion}"/></div>
-                                    </div>
-                                    <div class="card-footer text-right">
-                                            <h:commandButton class="btn btn-primary" value="Acceder" action="#{bd.actividad(a)}"/>
-                                        </div>
+                                    </c:forEach>
                                 </div>
-                            </div>
-                        </c:forEach>
+                            </h:form>
+                        </div>
                     </div>
-                </h:form>
-            </div>
-        </div>
+                    <div class="card mb-4 mt-4">
+                        <div class="card-header"><i class="fas fas fa-times mr-1" /> Rechazadas</div>
+                        <div class="card-body">
+                            <h:form>
+                                <div class="row">
+                                    <c:forEach var="a" items="#{bd.getActividadesRechazadas()}">
+                                        <div class="col-xl-3 col-md-6">
+                                            <div class="card mb-2">
+                                                <div class="card-header  text-center">
+                                                        <a><i class="far fa-dot-circle mr-2" /></a>
+                                                        <h:outputText value="#{a.nombre}"/>
+                                                    </div>
+                                                <div class="card-body">
+                                                    <div class="ml-2 mt-2"><b>Tipo<br/></b><h:outputText value="#{a.tipo}"/></div>
+                                                    <div class="ml-2 mt-2"><b>Fecha Inicio<br/></b><h:outputText value="#{a.fechaInicio}"/></div>
+                                                    <div class="ml-2 mt-2"><b>Fecha Fin<br/></b><h:outputText value="#{a.fechaFin}"/></div>          
+                                                    <div class="ml-2 mt-2"><b>Lugar<br/></b><h:outputText value="#{a.lugar}"/></div>
+                                                    <div class="ml-2 mt-2"><b>Descripción<br/></b><h:outputText value="#{a.descripcion}"/></div>
+                                                </div>
+                                                <div class="card-footer text-right">
+                                                        <h:commandButton class="btn btn-primary" value="Acceder" action="#{bd.actividad(a)}"/>
+                                                    </div>
+                                            </div>
+                                        </div>
+                                    </c:forEach>
+                                </div>
+                            </h:form>
+                        </div>
+                    </div>
+            </c:when>
+            
+            <c:otherwise>
+                <meta http-equiv="refresh" content="0; url=/Entrega2/faces/error.xhtml?faces-redirect=true"/>
+            </c:otherwise>
+        </c:choose>        
     </ui:define>
 </ui:composition>

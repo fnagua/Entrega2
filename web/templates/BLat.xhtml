@@ -12,9 +12,15 @@
                 
                 <c:if test="#{not empty controlAutorizacion.usuario}">
                     <!-- Administracion -->
-                    <div class="sb-sidenav-menu-heading">Administración</div>
-                    <a class="nav-link" href="/Entrega2/faces/proponer.xhtml"><div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>Proponer actividades</a>
                     <c:if test="#{ controlAutorizacion.usuario.rol != 'VOLUNTARIO'}">
+                        <div class="sb-sidenav-menu-heading">Administración</div>
+                    </c:if>
+                    
+                    <c:if test="#{ controlAutorizacion.usuario.rol == 'AFILIADO' || controlAutorizacion.usuario.rol == 'ADMINISTRADOR'}">
+                        <a class="nav-link" href="/Entrega2/faces/proponer.xhtml"><div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>Proponer actividades</a>
+                    </c:if>
+                    
+                    <c:if test="#{ controlAutorizacion.usuario.rol == 'RESPONSABLE' || controlAutorizacion.usuario.rol == 'ADMINISTRADOR'}">
                         <a class="nav-link" href="/Entrega2/faces/listaVal.xhtml"><div class="sb-nav-link-icon"><i class="fas fa-tasks"></i></div>Validar actividades</a>
                     </c:if>
                 </c:if>

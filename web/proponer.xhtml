@@ -8,9 +8,10 @@
     >
     <ui:define name="title">Lista Actividades</ui:define>
     <ui:define name="content">
-        
-            <!--Nombre, Tipo, Estado, FechaInicio, FechaFin, Descripcion, NumParticipantes, Lugar-->
-            <div class ="container-fluid">
+        <c:choose>
+            <c:when test="#{controlAutorizacion.usuario.rol == 'AFILIADO'}">
+                <!--Nombre, Tipo, Estado, FechaInicio, FechaFin, Descripcion, NumParticipantes, Lugar-->
+                <div class ="container-fluid">
                 <h1 class="mt-4"> Nueva Actividad </h1>
                 <div class="card mb-4">
                     <div class ="card-body">
@@ -58,7 +59,16 @@
                         </h:form>
                     </div>
                 </div>
-            </div>
+                </div>
+            </c:when>
+            
+            <c:otherwise>
+                <meta http-equiv="refresh" content="0; url=/Entrega2/faces/error.xhtml?faces-redirect=true"/>
+            </c:otherwise>
+        </c:choose> 
+        
+            
+            
         
     </ui:define>
 </ui:composition>

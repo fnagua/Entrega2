@@ -5,74 +5,85 @@
     xmlns:h="http://xmlns.jcp.org/jsf/html"
     xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
     xmlns:f="http://java.sun.com/jsf/core"
-    >     
-    <head>
-        <meta content=""/>
-        <title>
-           Registro Responsable
-        </title>
-        <link href="resources/css/styles.css" rel="stylesheet" />
-    </head>
-    <body class="bg-primary">
-        <div id="layoutAuthentication">
-            <div id="layoutAuthentication_content">
-                <div class="container">
-                    <div></div>
-                    <div class="row justify-content-center">
-                        <div class="col-lg-5">
-                            <div class="card shadow-lg border-0 rounded-lg mt-5 mb-4">
-                                <div class="card-header"><h3 class="text-center font-weight-light my-4">Registro Responsable</h3></div>
-                                    <div class="card-body">
-                                        
-                                            <div class="form-row">
-                                                <h:form id="registro">
-                                                <div class="form-row">
-                                                    <div class="col-md-6">
-                                                        <div class="form-group"><label class="mb-1" for="inputFirstName">Nombre*</label><h:inputText class="form-control py-4" value="#{bd.nombre}"/></div>
+    >
+    
+    <c:choose>
+        <c:when test="#{empty controlAutorizacion.usuario}">
+            <head>
+                <meta content=""/>
+                <title>
+                   Registro Responsable
+                </title>
+                <link href="resources/css/styles.css" rel="stylesheet" />
+            </head>
+            <body class="bg-primary">
+                <div id="layoutAuthentication">
+                    <div id="layoutAuthentication_content">
+                        <div class="container">
+                            <div></div>
+                            <div class="row justify-content-center">
+                                <div class="col-lg-5">
+                                    <div class="card shadow-lg border-0 rounded-lg mt-5 mb-4">
+                                        <div class="card-header"><h3 class="text-center font-weight-light my-4">Registro Responsable</h3></div>
+                                            <div class="card-body">
+
+                                                    <div class="form-row">
+                                                        <h:form id="registro">
+                                                        <div class="form-row">
+                                                            <div class="col-md-6">
+                                                                <div class="form-group"><label class="mb-1" for="inputFirstName">Nombre*</label><h:inputText class="form-control py-4" value="#{bd.nombre}"/></div>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <div class="form-group"><label class=" mb-1" for="inputLastName">Apellidos*</label><h:inputText class="form-control py-4" id="inputLastName" value="#{bd.apellidos}"  /></div>
+                                                            </div>
+                                                        </div>
+                                                        </h:form>     
                                                     </div>
-                                                    <div class="col-md-6">
-                                                        <div class="form-group"><label class=" mb-1" for="inputLastName">Apellidos*</label><h:inputText class="form-control py-4" id="inputLastName" value="#{bd.apellidos}"  /></div>
+                                                 <h:form id="registro2">
+                                                    <div class="form-group"><label class="mb-1" for="inputUserName">Nombre Usuario*</label><h:inputText class="form-control py-4" id="inputUserName"  value="#{bd.usuarioo}"/></div>
+                                                    <div class="form-group"><label class="mb-1" for="inputEmailAddress">Email*</label><h:inputText class="form-control py-4" id="inputEmailAddress" value="#{bd.email}" /></div>
+                                                    <div class="form-row">
+
+                                                        <div class="col-md-6">
+                                                            <div class="form-group"><label class="mb-1" for="inputPassword">Password*</label><h:inputSecret class="form-control py-4" id="inputPassword" value="#{bd.contraseniaa}" /></div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group"><label class="mb-1" for="inputConfirmPassword">Confirmar password*</label><h:inputSecret class="form-control py-4" id="inputConfirmPassword" /></div>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                </h:form>     
+
+                                                        <div class="form-row">
+
+                                                            <div class="form-group w-100"><label class="mb-1" for="inputDNI">DNI*</label><h:inputText class="form-control py-4" id="inputDNI" value="#{bd.dni}" /></div>
+
+                                                        <div>
+                                                            <label for="Desc">Descripcion</label>
+                                                            <h:inputTextarea rows = "6" cols = "53" readonly = "false" class="form-control py-4" value="#{bd.descripcion}"/>
+                                                        </div>
+                                                    </div>
+                                                     <!--</c:if>-->
+                                                    <div class="form-group mt-4">
+                                                         <h:commandButton class="btn btn-primary btn-block " value="Crear cuenta" action="#{bd.registrar()}" />
+                                                    </div>    
+                                               </h:form> 
                                             </div>
-                                         <h:form id="registro2">
-                                            <div class="form-group"><label class="mb-1" for="inputUserName">Nombre Usuario*</label><h:inputText class="form-control py-4" id="inputUserName"  value="#{bd.usuarioo}"/></div>
-                                            <div class="form-group"><label class="mb-1" for="inputEmailAddress">Email*</label><h:inputText class="form-control py-4" id="inputEmailAddress" value="#{bd.email}" /></div>
-                                            <div class="form-row">
-                                                
-                                                <div class="col-md-6">
-                                                    <div class="form-group"><label class="mb-1" for="inputPassword">Password*</label><h:inputSecret class="form-control py-4" id="inputPassword" value="#{bd.contraseniaa}" /></div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group"><label class="mb-1" for="inputConfirmPassword">Confirmar password*</label><h:inputSecret class="form-control py-4" id="inputConfirmPassword" /></div>
-                                                </div>
-                                            </div>
-                                           
-                                                <div class="form-row">
-                                                
-                                                    <div class="form-group w-100"><label class="mb-1" for="inputDNI">DNI*</label><h:inputText class="form-control py-4" id="inputDNI" value="#{bd.dni}" /></div>
-                                                
-                                                <div>
-                                                    <label for="Desc">Descripcion</label>
-                                                    <h:inputTextarea rows = "6" cols = "53" readonly = "false" class="form-control py-4" value="#{bd.descripcion}"/>
-                                                </div>
-                                            </div>
-                                             <!--</c:if>-->
-                                            <div class="form-group mt-4">
-                                                 <h:commandButton class="btn btn-primary btn-block " value="Crear cuenta" action="#{bd.registrar()}" />
-                                            </div>    
-                                       </h:form> 
+                                        <div class="card-footer text-center">
+                                                <div class="small"><a href="/Entrega2/faces/login.xhtml">¿Ya tienes una cuenta? Inicia sesion</a></div>
+                                        </div>
                                     </div>
-                                <div class="card-footer text-center">
-                                        <div class="small"><a href="/Entrega2/faces/login.xhtml">¿Ya tienes una cuenta? Inicia sesion</a></div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </body>
+            </body>
+        </c:when>
+        
+        <c:otherwise>
+            <meta http-equiv="refresh" content="0; url=/Entrega2/faces/error.xhtml?faces-redirect=true"/>
+        </c:otherwise>
+        
+    </c:choose>
+    
     
 </ui:composition>
