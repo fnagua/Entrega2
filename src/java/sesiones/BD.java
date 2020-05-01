@@ -525,4 +525,15 @@ public class BD implements Serializable {
     public boolean isPendiente(){
         return mostrarActividad.getEstado().equals(Actividad.estado.Pendiente);
     }
+    
+    public boolean comprobarFecha(String f) {
+        try {
+            SimpleDateFormat formatoFecha = new SimpleDateFormat("dd/MM/yyyy");
+            formatoFecha.setLenient(false);
+            formatoFecha.parse(f);
+        } catch (ParseException e) {
+            return false;
+        }
+        return true;
+    }
 }
