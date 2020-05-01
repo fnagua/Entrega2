@@ -90,7 +90,9 @@ public class Actividad implements Serializable {
     public void setCursos(List<Curso> cursos) {
         this.cursos = cursos;
     }
-
+    public void addUser(Usuario u){
+        usuarios.add(u);
+    }
     public List<Usuario> getUsuarios() {
         if(usuarios==null)return new ArrayList<Usuario>();
         return usuarios;

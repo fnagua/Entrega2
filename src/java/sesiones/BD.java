@@ -84,7 +84,7 @@ public class BD implements Serializable {
         actividades.add(new Actividad("Actividad_Disponible", tipo.Formacion,   estado.Disponible, new SimpleDateFormat("dd/MM/yyyy").parse("30/12/2020"), new SimpleDateFormat("dd/MM/yyyy").parse("31/12/2020"), "Descripcion Actividad_Disponible", "Estepona"));
         actividades.add(new Actividad("Actividad_Finalizada", tipo.Formacion,   estado.Finalizada, new SimpleDateFormat("dd/MM/yyyy").parse("01/01/2019"), new SimpleDateFormat("dd/MM/yyyy").parse("01/01/2019"), "Descripcion Actividad_Finalizada", "Málaga"));
         actividades.add(new Actividad("Actividad_Pendiente",  tipo.Voluntariado,estado.Pendiente, new SimpleDateFormat("dd/MM/yyyy").parse("09/06/2020"), new SimpleDateFormat("dd/MM/yyyy").parse("11/06/2020"), "Descripcion Actividad_Pendiente", "Marbella"));
-        actividades.add(new Actividad("Actividad_Pendiente",  tipo.Voluntariado,estado.Rechazada, new SimpleDateFormat("dd/MM/yyyy").parse("09/06/2020"), new SimpleDateFormat("dd/MM/yyyy").parse("11/06/2020"), "Descripcion Actividad_Pendiente", "Marbella"));
+        actividades.add(new Actividad("Actividad_RECHAZADA",  tipo.Voluntariado,estado.Rechazada, new SimpleDateFormat("dd/MM/yyyy").parse("09/06/2020"), new SimpleDateFormat("dd/MM/yyyy").parse("11/06/2020"), "Descripcion Actividad_Pendiente", "Marbella"));
     }
     
     public String getVal() {
@@ -495,38 +495,22 @@ public class BD implements Serializable {
         setMostrarActividad(aux);
     }
     public String validar(){//ADMIN,RESPONSABLE,AFILIADO
-        Actividad act = getActividad(mostrarActividad.getId());
-        Actividad aux = act;
-        actividades.remove(act);
-        aux.setEstado(estado.Disponible);
-        actividades.add(aux);
+        mostrarActividad.setEstado(estado.Disponible);
         return "listaVal.xhtml?faces-redirect=true";
     }
     public String rechazar(){//ADMIN,RESPONSABLE,AFILIADO
-        Actividad act = getActividad(mostrarActividad.getId());
-        Actividad aux = act;
-        actividades.remove(act);
-        aux.setEstado(estado.Rechazada);
-        actividades.add(aux);
+        mostrarActividad.setEstado(estado.Rechazada);
         return "listaVal.xhtml?faces-redirect=true";
     }
     public String aniadirUsuario(){//todos ##LISTO##
-        Actividad act = getActividad(mostrarActividad.getId());
-        Actividad aux = act;
-        actividades.remove(act);
-        
-        List<Usuario> lista = aux.getUsuarios();
-        lista.add(ctrl.getUsuario());
-        aux.setUsuarios(lista);
-        
-        actividades.add(aux);
-        mostrarActividad=aux;
+        mostrarActividad.addUser(ctrl.getUsuario());
         return "actividad.xhtml?faces-redirect=true";
     }
     public String eliminar(){//ADMIN,RESPONSABLE
-        Actividad act = getActividad(mostrarActividad.getId());
-        actividades.remove(act);
-        return "listaVal.xhtml?faces-redirect=true";
+        if(actividades.remove(mostrarActividad)){
+            return "listaVal.xhtml?faces-redirect=true";
+        }
+        return "lista.xhtml?faces-redirect=true";
     }
     public List<Usuario> usuarios(){
         return mostrarActividad.getUsuarios();
