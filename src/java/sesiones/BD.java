@@ -321,7 +321,7 @@ public class BD implements Serializable {
     }
     public String actividad(Actividad a){ 
         setMostrarActividad(a);
-        return "actividad.xhtml";
+        return "actividad.xhtml?faces-redirect=true";
     }
     public int getParticipantes(){
         if(mostrarActividad.getUsuarios()==null){
@@ -363,13 +363,13 @@ public class BD implements Serializable {
             FacesMessage fm = new FacesMessage("La cuenta no existe");
             FacesContext.getCurrentInstance().addMessage("login:user", fm);
         }
-        return "login.xhtml";
+        return "login.xhtml?faces-redirect=true";
     }
 
     public String registrar(){
         Usuario user = new Usuario(usuarioo,email,nombre,apellidos,contraseniaa,rol);
         usuarios.add(user);
-        return "login.xhtml";
+        return "login.xhtml?faces-redirect=true";
     }
 
     public String elegir(){
@@ -406,7 +406,7 @@ public class BD implements Serializable {
             email="";
         }
         ctrl.setUsuario(user);
-        return "perfil.xhtml";
+        return "perfil.xhtml?faces-redirect=true";
     }
     public String proponer(){
         Date fechaa = null;
@@ -426,7 +426,7 @@ public class BD implements Serializable {
         
         //return actividad(b);
         setMostrarActividad(acti);
-        return "actividad.xhtml";
+        return "actividad.xhtml?faces-redirect=true";
         
     }
 }

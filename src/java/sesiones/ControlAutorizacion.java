@@ -41,21 +41,20 @@ public class ControlAutorizacion implements Serializable {
         return usuario;
     }
     public String perfil(){
-        return "perfil.xhtml";
+        return "perfil.xhtml?faces-redirect=true";
     }
     public String registro(){
-        return "registro.xhtml";
+        return "registro.xhtml?faces-redirect=true";
     }
     public String login(){
-        return "login.xhtml";
+        return "/login.xhtml?faces-redirect=true";
     }
     public String home() {
-        
-        return "lista.xhtml";
+        return "/lista.xhtml?faces-redirect=true";
         
     }
     public String editarPerfil(){
-        return "editar-perfil.xhtml";
+        return "editar-perfil.xhtml?faces-redirect=true";
     }
     
     public String logout()
@@ -64,7 +63,7 @@ public class ControlAutorizacion implements Serializable {
         FacesContext ctx = FacesContext.getCurrentInstance();
         ctx.getExternalContext().invalidateSession();
         usuario = null;
-        return "lista.xhtml";
+        return "lista.xhtml?faces-redirect=true";
     }
 
     /**
