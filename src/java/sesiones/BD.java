@@ -394,13 +394,155 @@ public class BD implements Serializable {
         }
         return "login.xhtml?faces-redirect=true";
     }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
-    public String registrar(){
+    public String registrarVoluntario(){
+        
+        if (usuarioo.isEmpty()) {
+            FacesMessage fm = new FacesMessage("Campo \"Nombre de Usuaro\" vacío");
+            FacesContext.getCurrentInstance().addMessage("registroVoluntario:inputUserName", fm);
+            return "registroVoluntario.xhtml?faces-redirect=true";
+        }
+        
+        if (email.isEmpty()) {
+            FacesMessage fm = new FacesMessage("Campo \"Email\" vacío");
+            FacesContext.getCurrentInstance().addMessage("registroVoluntario:inputEmailAddress", fm);
+            return "registroVoluntario.xhtml?faces-redirect=true";
+        }
+        
+        if (nombre.isEmpty()) {
+            FacesMessage fm = new FacesMessage("Campo \"Nombre\" vacío");
+            FacesContext.getCurrentInstance().addMessage("registroVoluntario:inputName", fm);
+            return "registroVoluntario.xhtml?faces-redirect=true";
+        }
+        
+        if (apellidos.isEmpty()) {
+            FacesMessage fm = new FacesMessage("Campo \"Apellidos\" vacío");
+            FacesContext.getCurrentInstance().addMessage("registroVoluntario:inputLastName", fm);
+            return "registroVoluntario.xhtml?faces-redirect=true";
+        }
+        
+        if (contraseniaa.isEmpty()) {
+            FacesMessage fm = new FacesMessage("Campo \"Password\" vacío");
+            FacesContext.getCurrentInstance().addMessage("registroVoluntario:inputPassword", fm);
+            return "registroVoluntario.xhtml?faces-redirect=true";
+        }
+        
         Usuario user = new Usuario(usuarioo,email,nombre,apellidos,contraseniaa,rol);
         usuarios.add(user);
         return "login.xhtml?faces-redirect=true";
     }
 
+    public String registrarAfiliado(){
+        
+        if (usuarioo.isEmpty()) {
+            FacesMessage fm = new FacesMessage("Campo \"Nombre de Usuaro\" vacío");
+            FacesContext.getCurrentInstance().addMessage("registroAfiliado:inputUserName", fm);
+            return "registroAfiliado.xhtml?faces-redirect=true";
+        }
+        
+        if (email.isEmpty()) {
+            FacesMessage fm = new FacesMessage("Campo \"Email\" vacío");
+            FacesContext.getCurrentInstance().addMessage("registroAfiliado:inputEmailAddress", fm);
+            return "registroAfiliado.xhtml?faces-redirect=true";
+        }
+        
+        if (nombre.isEmpty()) {
+            FacesMessage fm = new FacesMessage("Campo \"Nombre\" vacío");
+            FacesContext.getCurrentInstance().addMessage("registroAfiliado:inputName", fm);
+            return "registroAfiliado.xhtml?faces-redirect=true";
+        }
+        
+        if (apellidos.isEmpty()) {
+            FacesMessage fm = new FacesMessage("Campo \"Apellidos\" vacío");
+            FacesContext.getCurrentInstance().addMessage("registroAfiliado:inputLastName", fm);
+            return "registroAfiliado.xhtml?faces-redirect=true";
+        }
+        
+        if (contraseniaa.isEmpty()) {
+            FacesMessage fm = new FacesMessage("Campo \"Password\" vacío");
+            FacesContext.getCurrentInstance().addMessage("registroAfiliado:inputPassword", fm);
+            return "registroAfiliado.xhtml?faces-redirect=true";
+        }
+        
+        if (dni.isEmpty()) {
+            FacesMessage fm = new FacesMessage("Campo \"DNI\" vacío");
+            FacesContext.getCurrentInstance().addMessage("registroAfiliado:inputDNI", fm);
+            return "registroAfiliado.xhtml?faces-redirect=true";
+        }
+        
+        Usuario user = new Usuario(usuarioo,email,nombre,apellidos,contraseniaa,rol);
+        usuarios.add(user);
+        return "login.xhtml?faces-redirect=true";
+    }
+    
+    public String registrarResponsable(){
+        
+        if (usuarioo.isEmpty()) {
+            FacesMessage fm = new FacesMessage("Campo \"Nombre de Usuaro\" vacío");
+            FacesContext.getCurrentInstance().addMessage("registroResponsable:inputUserName", fm);
+            return "registroResponsable.xhtml?faces-redirect=true";
+        }
+        
+        if (email.isEmpty()) {
+            FacesMessage fm = new FacesMessage("Campo \"Email\" vacío");
+            FacesContext.getCurrentInstance().addMessage("registroResponsable:inputEmailAddress", fm);
+            return "registroResponsable.xhtml?faces-redirect=true";
+        }
+        
+        if (nombre.isEmpty()) {
+            FacesMessage fm = new FacesMessage("Campo \"Nombre\" vacío");
+            FacesContext.getCurrentInstance().addMessage("registroResponsable:inputName", fm);
+            return "registroResponsable.xhtml?faces-redirect=true";
+        }
+        
+        if (apellidos.isEmpty()) {
+            FacesMessage fm = new FacesMessage("Campo \"Apellidos\" vacío");
+            FacesContext.getCurrentInstance().addMessage("registroResponsable:inputLastName", fm);
+            return "registroResponsable.xhtml?faces-redirect=true";
+        }
+        
+        if (contraseniaa.isEmpty()) {
+            FacesMessage fm = new FacesMessage("Campo \"Password\" vacío");
+            FacesContext.getCurrentInstance().addMessage("registroResponsable:inputPassword", fm);
+            return "registroResponsable.xhtml?faces-redirect=true";
+        }
+        
+        if (dni.isEmpty()) {
+            FacesMessage fm = new FacesMessage("Campo \"DNI\" vacío");
+            FacesContext.getCurrentInstance().addMessage("registroResponsable:inputDNI", fm);
+            return "registroResponsable.xhtml?faces-redirect=true";
+        }
+        
+        Usuario user = new Usuario(usuarioo,email,nombre,apellidos,contraseniaa,rol);
+        usuarios.add(user);
+        return "login.xhtml?faces-redirect=true";
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     public String elegir(){
         String s="";
         switch(elegir){
