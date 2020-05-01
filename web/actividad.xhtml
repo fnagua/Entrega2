@@ -9,44 +9,50 @@
     <ui:define name="title">Actividad</ui:define>
     <ui:define name="content">
          <div class ="container-fluid">
+             
                             <h1 class="mt-4">
-                                <h:outputText value="#{bd.getActividad().nombre}"/>
+                                <h:form>
+                                    <h:outputText value="#{bd.getActividad().getNombre()}"/>
+                                </h:form>
                             </h1>
-
+                           
                             <div class="card mb-4">
                                 <div class ="card-body">
                                     <div class="row">
                                         <!--Lugar donde se introducen los datos de la actividad-->
+                                        
                                         <div class="col-lg-6">
-                                            <p class="mb-2">
-                                                <b>Nombre:  </b>
-                                            <h:outputText value="#{bd.getActividad().nombre}"/></p>
-                                            <p class="mb-2">
-                                                 <b>Tipo:  </b>
-                                           
-                                            <h:outputText value="#{bd.getActividad().tipo}"/> </p>
-                                            <p class="mb-2">
-                                                 <b>Estado:  </b>
-                                           
-                                            <h:outputText value="#{bd.getActividad().estado}"/> </p>
-                                            <p class="mb-2">
-                                                 <b>Fecha de inicio:  </b>
-                                            
-                                             <h:outputText value="#{bd.getActividad().fechaInicio}"/></p>
-                                            <p class="mb-2">
-                                                 <b>Fecha de fin:  </b>
-                                            
-                                            <h:outputText value="#{bd.actividad.fechaFin}"/></p>
-                                            <p class="mb-2">
-                                                <b> Número de participantes:  </b>
-                                                <h:outputText value="#{bd.getParticipantes()}"/></p>
-                                            
-                                             <!--<h:outputText value=""/>-->
-                                            <p class="mb-2">
-                                                 <b>Lugar:  </b>
-                                                                                      
-                                              <h:outputText value="#{bd.getActividad().lugar}"/></p>  
+                                            <h:form id="datos">
+                                                <p class="mb-2">
+                                                    <b>Nombre:  </b>
+                                                <h:outputText value="#{bd.getActividad().nombre }"/></p>
+                                                <p class="mb-2">
+                                                     <b>Tipo:  </b>
+
+                                                <h:outputText value="#{bd.getActividad().tipo}"/> </p>
+                                                <p class="mb-2">
+                                                     <b>Estado:  </b>
+
+                                                <h:outputText value="#{bd.getActividad().estado}"/> </p>
+                                                <p class="mb-2">
+                                                     <b>Fecha de inicio:  </b>
+
+                                                 <h:outputText value="#{bd.getActividad().getFechaInicio()}"/></p>
+                                                <p class="mb-2">
+                                                     <b>Fecha de fin:  </b>
+
+                                                <h:outputText value="#{bd.getActividad().getFechaFin()}"/></p>
+                                                <p class="mb-2">
+                                                    <b> Número de participantes:  </b>
+                                                    <h:outputText value="#{bd.getActividad().getNumParticipantes()}"/></p>
+
+                                                 <!--<h:outputText value=""/>-->
+                                                <p class="mb-2">
+                                                    <b>Lugar:  </b>
+                                                    <h:outputText value="#{bd.getActividad().lugar}"/></p>  
+                                            </h:form>
                                         </div>
+                                        
                                         <!--Imagen y botones-->
                                         <div class="col-lg-6">
                                             <div class="mb-4">
@@ -54,7 +60,7 @@
                                                 src="assets/img/logo-umaes.png"
                                                 alt="" /></a>
                                             </div>
-                                            <h:form>
+                                            <h:form id="buttons">
                                                 <div class="mb-4">
                                                     <h:commandButton class="btn btn-primary" value="Validar" action="#{actividad.validar()}" />
                                                     <!--Se valida la actividad y volvemos a listaVal-->
@@ -75,7 +81,7 @@
                                     </div>
                                 </div>
                             </div>
-            
+                            <h:form>
                             <!--Descripción-->
                             <div class="card mb-4">
                                 <div class="card-header">Descripción</div>
@@ -103,28 +109,33 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="card mb-4">
-                                <div class="card-header">Valorar</div>
-                                <div class="card-body">
-                                    <div class="table-responsive">
-                                        <!--<div class="mb-4"><input class="form-control py-4" id="inputValoracion" placeholder="Quiero poner un slider https://seiyria.com/bootstrap-slider/"/></div>-->
-                                         
-                                        <h:selectOneMenu class="mt-2 mb-4" id="so" value="#{actividad.calificacion}">
-                                            <div>Califica la actividad:*</div>
-                                                        <f:selectItem itemValue="1" itemLabel="NADA SATISFECHO"/>
-                                                        <f:selectItem itemValue="2" itemLabel="POCO SATISFECHO"/>
-                                                        <f:selectItem itemValue="3" itemLabel="SATISFECHO"/>
-                                                        <f:selectItem itemValue="4" itemLabel="MUY SATISFECHO"/>
-                                                        <f:selectItem itemValue="5" itemLabel="TOTALMENTE SATISFECHO"/>
-                                        </h:selectOneMenu>
-                                        <div class="mb-2">Un breve comentario sobre su experiencia:*</div>
-                                        <div class="mb-4"><h:inputTextarea rows = "15" readonly = "false" class="form-control" value="#{actividad.valoracion}"/></div>
-                                        <h:form>
-                                        <h:commandButton class="btn btn-primary mt-5" value="Valorar" action="#{actividad.valorar()}" />
-                                        </h:form>
+                            </h:form>
+                            
+                                <c:if test="#{controlAutorizacion.usuario.rol == 'RESPONSABLE' || controlAutorizacion.usuario.rol=='ADMINISTRADOR'}">
+                                    <div class="card mb-4">
+                                    <div class="card-header">Valorar</div>
+                                    <div class="card-body">
+                                        <div class="table-responsive">
+                                            <!--<div class="mb-4"><input class="form-control py-4" id="inputValoracion" placeholder="Quiero poner un slider https://seiyria.com/bootstrap-slider/"/></div>-->
+                                             <h:form>
+                                            <h:selectOneMenu class="mt-2 mb-4" id="so" >
+                                                <div>Califica la actividad:*</div>
+                                                            <f:selectItem itemValue="1" itemLabel="NADA SATISFECHO"/>
+                                                            <f:selectItem itemValue="2" itemLabel="POCO SATISFECHO"/>
+                                                            <f:selectItem itemValue="3" itemLabel="SATISFECHO"/>
+                                                            <f:selectItem itemValue="4" itemLabel="MUY SATISFECHO"/>
+                                                            <f:selectItem itemValue="5" itemLabel="TOTALMENTE SATISFECHO"/>
+                                            </h:selectOneMenu>
+                                            <div class="mb-2">Un breve comentario sobre su experiencia:*</div>
+                                            <div class="mb-4"><h:inputTextarea rows = "15" readonly = "false" class="form-control"/></div>
+
+                                            <h:commandButton class="btn btn-primary mt-5" value="Valorar" />
+                                            </h:form>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
+                                    </div>
+                                </c:if>
+                            
          </div>
     </ui:define>
 </ui:composition>
