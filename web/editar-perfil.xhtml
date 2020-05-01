@@ -42,8 +42,10 @@
                                 <div class="form-group mb-2">
                                     <b>Email<br/></b>
                                     <h:inputText class="form-control py-4" a:placeholder="#{controlAutorizacion.usuario.email}" value="#{bd.email}"/>
-                                    <b>Nº Teléfono<br/></b>
-                                    <h:inputText class="form-control py-4" a:placeholder="#{controlAutorizacion.usuario.email}##FALTA Nº TLF##"/>
+                                    <c:if test="#{controlAutorizacion.usuario.rol == 'AFILIADO'}">    
+                                        <b>Nº Teléfono<br/></b>
+                                        <h:inputText class="form-control py-4" a:placeholder="#{controlAutorizacion.usuario.email}##FALTA Nº TLF##"/>
+                                    </c:if>
                                 </div>
                             </div>
                         </div>
