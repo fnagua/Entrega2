@@ -21,8 +21,9 @@
                                         <div class="card-header">
                                             <h3 class="text-center font-weight-light my-4">Registro Afiliado</h3>
                                         </div>
-                                        <h:form id="registro">
-                                            <div class="card-body">
+                                        <div class="card-body">
+                                            <h:form id="registro">
+
 
                                                 <div class="form-row">
 
@@ -86,18 +87,25 @@
                                                             <h:inputText class="form-control py-4" id="inputTlf"
                                                                 value="#{bd.numero}" />
                                                         </div>
-                                                        
+
                                                     </div>
-                                                <div class="d-flex justify-content-between ml-1 mr-1">
-                                                    <h:commandButton class="btn btn-primary" value="Cancelar" action="#{controlAutorizacion.home()}" />
-                                                    <h:commandButton class="btn btn-primary" value="Crear cuenta" action="#{bd.registrarAfiliado()}" />
                                                 </div>
+                                                <div class="d-flex justify-content-between mt-4">
+                                                    <h:commandButton class="btn btn-primary" value="Cancelar"
+                                                        action="#{controlAutorizacion.home()}" />
+                                                    <h:commandButton class="btn btn-primary" value="Crear cuenta"
+                                                        action="#{bd.registrarAfiliado()}" />
+                                                </div>
+
+                                            </h:form>
+                                        </div>
+                                        <div class="card-footer text-center">
+                                            <div class="small">
+                                                <a href="/Entrega2/faces/login.xhtml">¿Ya tienes una cuenta? Inicia
+                                                    sesion</a>
                                             </div>
-                                            <div class="card-footer text-center">
-                                                <div class="small"><a href="/Entrega2/faces/login.xhtml">¿Ya tienes una
-                                                        cuenta? Inicia sesion</a></div>
-                                            </div>
-                                        </h:form>
+                                        </div>
+
                                     </div>
                                 </div>
                             </div>

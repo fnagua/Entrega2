@@ -478,6 +478,10 @@ public class BD implements Serializable {
         
         Usuario user = new Usuario(usuarioo,email,nombre,apellidos,contraseniaa,rol);
         usuarios.add(user);
+        email="";
+        nombre="";
+        apellidos="";
+        usuarioo="";
         return "login.xhtml?faces-redirect=true";
     }
     public String registrarAfiliado(){
@@ -526,6 +530,10 @@ public class BD implements Serializable {
         
         Usuario user = new Usuario(usuarioo,email,nombre,apellidos,contraseniaa,rol);
         usuarios.add(user);
+        email="";
+        nombre="";
+        apellidos="";
+        usuarioo="";
         return "login.xhtml?faces-redirect=true";
     }
     public String registrarResponsable(){
@@ -573,6 +581,10 @@ public class BD implements Serializable {
         }
         Usuario user = new Usuario(usuarioo,email,nombre,apellidos,contraseniaa,rol);
         usuarios.add(user);
+        email="";
+        nombre="";
+        apellidos="";
+        usuarioo="";
         return "login.xhtml?faces-redirect=true";
     }
     
