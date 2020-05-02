@@ -53,6 +53,7 @@ public class BD implements Serializable {
     private String nombre;
     private String apellidos;
     private String contraseniaa;
+    private String contraseniaa2;
     private String numero;
     private String descripcion;
     private String dni;
@@ -156,6 +157,32 @@ public class BD implements Serializable {
     public void setContrasenia(String contrasenia) {
         this.contrasenia = contrasenia;
     }
+
+    public String getTipoUsuario() {
+        return tipoUsuario;
+    }
+
+    public void setTipoUsuario(String tipoUsuario) {
+        this.tipoUsuario = tipoUsuario;
+    }
+
+    public String getContraseniaa2() {
+        return contraseniaa2;
+    }
+
+    public void setContraseniaa2(String contraseniaa2) {
+        this.contraseniaa2 = contraseniaa2;
+    }
+
+    public Usuario.Rol getRol() {
+        return rol;
+    }
+
+    public void setRol(Usuario.Rol rol) {
+        this.rol = rol;
+    }
+    
+    
     
     public void setActividades(List<Actividad> actividades) {
         this.actividades = actividades;
@@ -467,6 +494,13 @@ public class BD implements Serializable {
             return "registroVoluntario.xhtml?faces-redirect=true";
         }
         
+        if (!contraseniaa2.equals(contraseniaa)) {
+            FacesMessage fm = new FacesMessage("Las contraseñas no coinciden");
+            FacesContext.getCurrentInstance().addMessage("registroVoluntario:inputPassword", fm);
+            incorrecto = false;
+            return "registroVoluntario.xhtml?faces-redirect=true";
+        }
+        
         Usuario user = new Usuario(usuarioo,email,nombre,apellidos,contraseniaa,rol);
         usuarios.add(user);
         incorrecto = true;
@@ -504,6 +538,13 @@ public class BD implements Serializable {
         
         if (contraseniaa.isEmpty()) {
             FacesMessage fm = new FacesMessage("Campo \"Password\" vacío");
+            FacesContext.getCurrentInstance().addMessage("registroAfiliado:inputPassword", fm);
+            incorrecto = false;
+            return "registroAfiliado.xhtml?faces-redirect=true";
+        }
+        
+        if (!contraseniaa2.equals(contraseniaa)) {
+            FacesMessage fm = new FacesMessage("Las contraseñas no coinciden");
             FacesContext.getCurrentInstance().addMessage("registroAfiliado:inputPassword", fm);
             incorrecto = false;
             return "registroAfiliado.xhtml?faces-redirect=true";
@@ -553,6 +594,13 @@ public class BD implements Serializable {
         
         if (contraseniaa.isEmpty()) {
             FacesMessage fm = new FacesMessage("Campo \"Password\" vacío");
+            FacesContext.getCurrentInstance().addMessage("registroResponsable:inputPassword", fm);
+            incorrecto = false;
+            return "registroResponsable.xhtml?faces-redirect=true";
+        }
+        
+        if (!contraseniaa2.equals(contraseniaa)) {
+            FacesMessage fm = new FacesMessage("Las contraseñas no coinciden");
             FacesContext.getCurrentInstance().addMessage("registroResponsable:inputPassword", fm);
             incorrecto = false;
             return "registroResponsable.xhtml?faces-redirect=true";
