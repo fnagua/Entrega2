@@ -30,17 +30,23 @@ import sesiones.ControlAutorizacion;
 @SessionScoped
 //@RequestScoped
 public class BD implements Serializable {
-
-    //Login
-    private String usuario;
-    private String contrasenia;
-
+    
+    //BD en si misma
     private List<Usuario> usuarios;
     private List<Actividad> actividades;
+
+    //atributos del login
+    @Inject
+    private ControlAutorizacion ctrl;
+    private String usuario;
+    private String contrasenia;
+    
+    
     //Actividad Actual
     private Actividad mostrarActividad;
 
-    //Crear nuevo Usuario y modificar perfil
+    
+    //atributos del registro y edición de perfil
     private String tipoUsuario;
     private String usuarioo;
     private String email;
@@ -50,9 +56,14 @@ public class BD implements Serializable {
     private String numero;
     private String descripcion;
     private String dni;
+    private Usuario.Rol rol;
+    
+    
+    //selección de tipo de perfil
+    private String elegir;
     
 
-    // Proponer actividad
+    //atributos de Proponer actividad
     private String nombrea;
     private String fechaInicioa;
     private String fechaFina;
@@ -63,20 +74,16 @@ public class BD implements Serializable {
     private String valoracion;
     private String val;
 
-    private String elegir;
-    private Usuario.Rol rol;
-
+    
+    //mensajes de error
     private boolean incorrecto = true;
 
-    public boolean isIncorrecto() {
-        return incorrecto;
-    }
-
-    public void setIncorrecto(boolean incorrecto) {
-        this.incorrecto = incorrecto;
-    }
-    @Inject
-    private ControlAutorizacion ctrl;
+    
+    
+    
+    
+    
+    
     
 
     public BD() throws Exception {
@@ -95,6 +102,15 @@ public class BD implements Serializable {
         actividades.add(new Actividad("Actividad_Finalizada", tipo.Formacion,   estado.Finalizada, new SimpleDateFormat("dd/MM/yyyy").parse("01/01/2019"), new SimpleDateFormat("dd/MM/yyyy").parse("01/01/2019"), "Descripcion Actividad_Finalizada", "Málaga"));
         actividades.add(new Actividad("Actividad_Pendiente",  tipo.Voluntariado,estado.Pendiente, new SimpleDateFormat("dd/MM/yyyy").parse("09/06/2020"), new SimpleDateFormat("dd/MM/yyyy").parse("11/06/2020"), "Descripcion Actividad_Pendiente", "Marbella"));
         actividades.add(new Actividad("Actividad_Rechazada",  tipo.Voluntariado,estado.Rechazada, new SimpleDateFormat("dd/MM/yyyy").parse("09/06/2020"), new SimpleDateFormat("dd/MM/yyyy").parse("11/06/2020"), "Descripcion Actividad_Pendiente", "Marbella"));
+    }
+    
+        
+    public boolean isIncorrecto() {
+        return incorrecto;
+    }
+
+    public void setIncorrecto(boolean incorrecto) {
+        this.incorrecto = incorrecto;
     }
     
     public String getVal() {
@@ -124,6 +140,7 @@ public class BD implements Serializable {
     public void addUser(Usuario u){
         usuarios.add(u);
     }
+    
     public String getUsuario() {
         return usuario;
     }
@@ -139,9 +156,11 @@ public class BD implements Serializable {
     public void setContrasenia(String contrasenia) {
         this.contrasenia = contrasenia;
     }
-     public void setActividades(List<Actividad> actividades) {
+    
+    public void setActividades(List<Actividad> actividades) {
         this.actividades = actividades;
     }
+    
     public List<Usuario> getUsuarios() {
         return usuarios;
     }
@@ -157,6 +176,7 @@ public class BD implements Serializable {
     public void setMostrarActividad(Actividad mostrarActividad) {
         this.mostrarActividad = mostrarActividad;
     }
+    
     public ControlAutorizacion getCtrl() {
         return ctrl;
     }
@@ -164,12 +184,15 @@ public class BD implements Serializable {
     public void setCtrl(ControlAutorizacion ctrl) {
         this.ctrl = ctrl;
     }
-     public Actividad getActividad(){
+    
+    public Actividad getActividad(){
         return mostrarActividad;
     }
+    
     public List<Actividad> getActividades(){
         return actividades;
     }
+    
     public String getTipo() {
         return tipoUsuario;
     }
@@ -250,7 +273,6 @@ public class BD implements Serializable {
         this.elegir = elegir;
     }
     
-    
     public String getNombrea() {
         return nombrea;
     }
@@ -290,8 +312,6 @@ public class BD implements Serializable {
     public void setLugara(String lugara) {
         this.lugara = lugara;
     }
-
-    
     
     public String getDescripciona() {
         return descripciona;
@@ -301,6 +321,7 @@ public class BD implements Serializable {
         this.descripciona = descripciona;
     }
     
+    //busca actividad por id
     public Actividad getActividad(Long id){
          Actividad res = null;
         for(Actividad a : actividades){
@@ -311,7 +332,7 @@ public class BD implements Serializable {
         return res;
      }
    
-
+    //buscan actividades según estado
     public List<Actividad> getActividadesDisponibles(){
         List<Actividad> ad = new ArrayList<>();
 
@@ -342,7 +363,6 @@ public class BD implements Serializable {
 
         return ap;
     }
-
     public List<Actividad> getActividadesRechazadas(){
         List<Actividad> ar = new ArrayList<>();
 
@@ -353,10 +373,14 @@ public class BD implements Serializable {
 
         return ar;
     }
+    
+    //muestra actividad seleccionada
     public String actividad(Actividad a){ 
         setMostrarActividad(a);
         return "actividad.xhtml?faces-redirect=true";
     }
+    
+    //numero de participantes
     public int getParticipantes(){
         if(mostrarActividad.getUsuarios()==null){
             return 0;
@@ -364,10 +388,12 @@ public class BD implements Serializable {
         return mostrarActividad.getUsuarios().size();
     }
 
+    //añade un usuario por sus parámetros
     public void addUsuario(String usuario, String email, String nombre, String apellidos, String contrasenia, Usuario.Rol rol){
         usuarios.add(new Usuario(usuario, email, nombre, apellidos, contrasenia, rol));
     }
     
+    //logea un usuario comprobando que es correcto
     public String autenticar() {       
         
         FacesContext ctx = FacesContext.getCurrentInstance();
@@ -387,7 +413,6 @@ public class BD implements Serializable {
         if(b) {//usuario encontrado
             if(u.getContrasenia().equals(contrasenia)) {//contraseña correcta
                 ctrl.setUsuario(u);
-                ctrl.setLogeado(true);
                 return ctrl.home();
             } else {//contraseña incorrecta
                FacesMessage fm = new FacesMessage("La contraseña no es correcta");
@@ -404,6 +429,7 @@ public class BD implements Serializable {
         return "login.xhtml?faces-redirect=true";
     }
 
+    //registran un usuario comprobando las entradas
     public String registrarVoluntario(){
         
         if (usuarioo.isEmpty()) {
@@ -446,7 +472,6 @@ public class BD implements Serializable {
         incorrecto = true;
         return "login.xhtml?faces-redirect=true";
     }
-
     public String registrarAfiliado(){
         
         if (usuarioo.isEmpty()) {
@@ -496,7 +521,6 @@ public class BD implements Serializable {
         incorrecto = true;
         return "login.xhtml?faces-redirect=true";
     }
-    
     public String registrarResponsable(){
         
         if (usuarioo.isEmpty()) {
@@ -546,6 +570,7 @@ public class BD implements Serializable {
         return "login.xhtml?faces-redirect=true";
     }
     
+    //selecciona el rol del registro
     public String elegir(){
         String s="";
         switch(elegir){
@@ -559,6 +584,7 @@ public class BD implements Serializable {
          return s;
     }
     
+    //modifica un usuario comprobando las entradas
     public String modificarUsuario() {
         Usuario user = ctrl.getUsuario();
         if(!nombre.equals("")) {
@@ -583,6 +609,7 @@ public class BD implements Serializable {
         return "perfil.xhtml?faces-redirect=true";
     }
 
+    //aniade una nueva actividad pendiente comprobando las entradas
     public String proponer()throws Exception {
         //Comprobar nulls
         if(nombrea.isEmpty()) {
@@ -615,6 +642,7 @@ public class BD implements Serializable {
         
     }
 
+    //aniade una valoración de una actividad
     public void valorar(){
         StringBuilder sb = new StringBuilder();
         sb.append("Estoy ");
@@ -636,6 +664,8 @@ public class BD implements Serializable {
         valoracion="";
         val="";
     }
+    
+    //cambia el estado de una actividad
     public String validar(){//ADMIN,RESPONSABLE,AFILIADO
         mostrarActividad.setEstado(estado.Disponible);
         return "listaVal.xhtml?faces-redirect=true";
@@ -644,36 +674,45 @@ public class BD implements Serializable {
         mostrarActividad.setEstado(estado.Rechazada);
         return "listaVal.xhtml?faces-redirect=true";
     }
+    
+    //aniade al usuario logeado a la actividad seleccionada
     public String aniadirUsuario(){//todos ##LISTO##
         mostrarActividad.addUser(ctrl.getUsuario());
         return "actividad.xhtml?faces-redirect=true";
     }
+    //quita al usuario logeado a la actividad seleccionada
     public String quitarUsuario(){//todos ##LISTO##
         mostrarActividad.removeUser(ctrl.getUsuario());
         return "actividad.xhtml?faces-redirect=true";
     }
+    
+    //quita una actividad
     public String eliminar(){//ADMIN,RESPONSABLE
         if(actividades.remove(mostrarActividad)){
             return "listaVal.xhtml?faces-redirect=true";
         }
         return "lista.xhtml?faces-redirect=true";
     }
+    
+    //devuelve los usuarios de la actividad actual
     public List<Usuario> usuarios(){
         return mostrarActividad.getUsuarios();
     }
     
+    //dice si un usuario está o no en una actividad
     public boolean isUsuarioActividad(){
         return mostrarActividad.isUser(ctrl.getUsuario());
     }
     
+    //dicen el estado de una actividad
     public boolean isDisponible(){
         return mostrarActividad.getEstado().equals(Actividad.estado.Disponible);
     }
-    
     public boolean isPendiente(){
         return mostrarActividad.getEstado().equals(Actividad.estado.Pendiente);
     }
     
+    //comprueba que una fecha sea correcta
     public boolean comprobarFecha(String f) {
         try {
             SimpleDateFormat formatoFecha = new SimpleDateFormat("dd/MM/yyyy");
@@ -685,6 +724,7 @@ public class BD implements Serializable {
         return true;
     }
 
+    //comprueba la coherencia entre fechas
     public boolean comprobarIntervaloFechas() {
         if(!comprobarFecha(fechaInicioa) ) {
             FacesMessage fm = new FacesMessage("Formato de fecha incorrecto, recuerde usar dd/MM/yyyy (01/01/2020)");

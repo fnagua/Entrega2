@@ -23,16 +23,8 @@ import javax.faces.context.FacesContext;
 @SessionScoped
 public class ControlAutorizacion implements Serializable {
 
-    private Usuario usuario;
-    private boolean logged;
-    public boolean isLogeado() {
-        return logged;
-    }
-
-    public void setLogeado(boolean logeado) {
-        this.logged = logeado;
-    }
-
+    private Usuario usuario;//sesión del usuario actual
+    
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
