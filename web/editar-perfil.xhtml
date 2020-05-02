@@ -25,11 +25,11 @@
                             <div class="card-body">
                                 <div class="form-group">
                                     <b>Nombre<br/></b>
-                                    <h:inputText class="form-control py-4" a:placeholder="#{controlAutorizacion.usuario.nombre}" value="#{bd.nombre}"/>
+                                    <h:inputText class="form-control py-4 mt-1 mb-3" a:placeholder="#{controlAutorizacion.usuario.nombre}" value="#{bd.nombre}"/>
                                     <b>Apellidos<br/></b>
-                                    <h:inputText class="form-control py-4" a:placeholder="#{controlAutorizacion.usuario.apellidos}" value="#{bd.apellidos}"/>
+                                    <h:inputText class="form-control py-4 mt-1 mb-3" a:placeholder="#{controlAutorizacion.usuario.apellidos}" value="#{bd.apellidos}"/>
                                     <b>Alias<br/></b>
-                                    <h:inputText class="form-control py-4" a:placeholder="#{controlAutorizacion.usuario.usuario}" value="#{bd.usuarioo}"/>
+                                    <h:inputText class="form-control py-4 mt-1 mb-3" a:placeholder="#{controlAutorizacion.usuario.usuario}" value="#{bd.usuarioo}"/>
                                 </div>
                             </div>
                         </div>
@@ -41,10 +41,10 @@
                             <div class="card-body">
                                 <div class="form-group mb-2">
                                     <b>Email<br/></b>
-                                    <h:inputText class="form-control py-4" a:placeholder="#{controlAutorizacion.usuario.email}" value="#{bd.email}"/>
+                                    <h:inputText class="form-control py-4 mt-1 mb-3" a:placeholder="#{controlAutorizacion.usuario.email}" value="#{bd.email}"/>
                                     <c:if test="#{controlAutorizacion.usuario.rol == 'AFILIADO'}">    
                                         <b>Nº Teléfono<br/></b>
-                                        <h:inputText class="form-control py-4" a:placeholder="#{controlAutorizacion.usuario.email}##FALTA Nº TLF##"/>
+                                        <h:inputText class="form-control py-4 mt-1 mb-3" a:placeholder="#{controlAutorizacion.usuario.email}##FALTA Nº TLF##"/>
                                     </c:if>
                                 </div>
                             </div>
