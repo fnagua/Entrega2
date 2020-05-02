@@ -26,15 +26,18 @@
                                             <f:selectItem itemValue="2" itemLabel="   Formacion   " />
                                         </h:selectOneMenu>
 
-                                        <p class="mb-2 mt-2"> Fecha de inicio: </p>
-                                        <h:inputText id="fechaInicio" class="form-control py-2" value="#{bd.fechaInicioa}" />
+                                        <p class="mb-2 mt-2">Fecha de Inicio:
+                                        <h:inputText id="fechaInicio" class="form-control py-2 text-muted mt-2" value="#{bd.fechaInicioa}"/>
+                                        </p>
 
                                         <p class="mb-2 mt-2"> Fecha de fin: </p>
                                         <h:inputText id="fechaFin" class="form-control py-2" value="#{bd.fechaFina}" />
 
                                         <p class="mb-2 mt-2"> Lugar: </p>
-                                        <h:inputText id="lugar" class="form-control py-2" value="#{bd.lugara}" />
-
+                                        <h:inputText id="lugar" class="form-control py-2 mb-3" value="#{bd.lugara}" />
+                                        <c:if test="#{not bd.incorrecto}">
+                                        <p class=" mt-4" style="color:#FF0000">Vuelve a introducir los campos especificados.</p>
+                                        </c:if>
                                     </div>
                                     <!--Descripción-->
                                     <div class="col-lg-6">

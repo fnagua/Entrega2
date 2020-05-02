@@ -72,6 +72,9 @@
                                                                 id="inputConfirmPassword" />
                                                         </div>
                                                     </div>
+                                                    <c:if test="#{not bd.incorrecto}">
+                                                             <p class=" ml-5 mt-2 mb-4 align-content-lg-center" style="color:#FF0000">Vuelve a introducir los campos especificados.</p>
+                                                         </c:if>
                                                 </div>
                                                 <div class="d-flex justify-content-between ml-1 mr-1">
                                                     <h:commandButton class="btn btn-primary" value="Cancelar" action="#{controlAutorizacion.home()}" />

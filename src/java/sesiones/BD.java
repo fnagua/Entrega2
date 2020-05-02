@@ -66,6 +66,15 @@ public class BD implements Serializable {
     private String elegir;
     private Usuario.Rol rol;
 
+    private boolean incorrecto = true;
+
+    public boolean isIncorrecto() {
+        return incorrecto;
+    }
+
+    public void setIncorrecto(boolean incorrecto) {
+        this.incorrecto = incorrecto;
+    }
     @Inject
     private ControlAutorizacion ctrl;
     
@@ -400,35 +409,41 @@ public class BD implements Serializable {
         if (usuarioo.isEmpty()) {
             FacesMessage fm = new FacesMessage("Campo \"Nombre de Usuaro\" vacío");
             FacesContext.getCurrentInstance().addMessage("registroVoluntario:inputUserName", fm);
+            incorrecto = false;
             return "registroVoluntario.xhtml?faces-redirect=true";
         }
         
         if (email.isEmpty()) {
             FacesMessage fm = new FacesMessage("Campo \"Email\" vacío");
             FacesContext.getCurrentInstance().addMessage("registroVoluntario:inputEmailAddress", fm);
+            incorrecto = false;
             return "registroVoluntario.xhtml?faces-redirect=true";
         }
         
         if (nombre.isEmpty()) {
             FacesMessage fm = new FacesMessage("Campo \"Nombre\" vacío");
             FacesContext.getCurrentInstance().addMessage("registroVoluntario:inputName", fm);
+            incorrecto = false;
             return "registroVoluntario.xhtml?faces-redirect=true";
         }
         
         if (apellidos.isEmpty()) {
             FacesMessage fm = new FacesMessage("Campo \"Apellidos\" vacío");
             FacesContext.getCurrentInstance().addMessage("registroVoluntario:inputLastName", fm);
+            incorrecto = false;
             return "registroVoluntario.xhtml?faces-redirect=true";
         }
         
         if (contraseniaa.isEmpty()) {
             FacesMessage fm = new FacesMessage("Campo \"Password\" vacío");
             FacesContext.getCurrentInstance().addMessage("registroVoluntario:inputPassword", fm);
+            incorrecto = false;
             return "registroVoluntario.xhtml?faces-redirect=true";
         }
         
         Usuario user = new Usuario(usuarioo,email,nombre,apellidos,contraseniaa,rol);
         usuarios.add(user);
+        incorrecto = true;
         return "login.xhtml?faces-redirect=true";
     }
 
@@ -437,41 +452,48 @@ public class BD implements Serializable {
         if (usuarioo.isEmpty()) {
             FacesMessage fm = new FacesMessage("Campo \"Nombre de Usuaro\" vacío");
             FacesContext.getCurrentInstance().addMessage("registroAfiliado:inputUserName", fm);
+            incorrecto = false;
             return "registroAfiliado.xhtml?faces-redirect=true";
         }
         
         if (email.isEmpty()) {
             FacesMessage fm = new FacesMessage("Campo \"Email\" vacío");
             FacesContext.getCurrentInstance().addMessage("registroAfiliado:inputEmailAddress", fm);
+            incorrecto = false;
             return "registroAfiliado.xhtml?faces-redirect=true";
         }
         
         if (nombre.isEmpty()) {
             FacesMessage fm = new FacesMessage("Campo \"Nombre\" vacío");
             FacesContext.getCurrentInstance().addMessage("registroAfiliado:inputName", fm);
+            incorrecto = false;
             return "registroAfiliado.xhtml?faces-redirect=true";
         }
         
         if (apellidos.isEmpty()) {
             FacesMessage fm = new FacesMessage("Campo \"Apellidos\" vacío");
             FacesContext.getCurrentInstance().addMessage("registroAfiliado:inputLastName", fm);
+            incorrecto = false;
             return "registroAfiliado.xhtml?faces-redirect=true";
         }
         
         if (contraseniaa.isEmpty()) {
             FacesMessage fm = new FacesMessage("Campo \"Password\" vacío");
             FacesContext.getCurrentInstance().addMessage("registroAfiliado:inputPassword", fm);
+            incorrecto = false;
             return "registroAfiliado.xhtml?faces-redirect=true";
         }
         
         if (dni.isEmpty()) {
             FacesMessage fm = new FacesMessage("Campo \"DNI\" vacío");
             FacesContext.getCurrentInstance().addMessage("registroAfiliado:inputDNI", fm);
+            incorrecto = false;
             return "registroAfiliado.xhtml?faces-redirect=true";
         }
         
         Usuario user = new Usuario(usuarioo,email,nombre,apellidos,contraseniaa,rol);
         usuarios.add(user);
+        incorrecto = true;
         return "login.xhtml?faces-redirect=true";
     }
     
@@ -480,39 +502,45 @@ public class BD implements Serializable {
         if (usuarioo.isEmpty()) {
             FacesMessage fm = new FacesMessage("Campo \"Nombre de Usuaro\" vacío");
             FacesContext.getCurrentInstance().addMessage("registroResponsable:inputUserName", fm);
+            incorrecto = false;
             return "registroResponsable.xhtml?faces-redirect=true";
         }
         
         if (email.isEmpty()) {
             FacesMessage fm = new FacesMessage("Campo \"Email\" vacío");
             FacesContext.getCurrentInstance().addMessage("registroResponsable:inputEmailAddress", fm);
+            incorrecto = false;
             return "registroResponsable.xhtml?faces-redirect=true";
         }
         
         if (nombre.isEmpty()) {
             FacesMessage fm = new FacesMessage("Campo \"Nombre\" vacío");
             FacesContext.getCurrentInstance().addMessage("registroResponsable:inputName", fm);
+            incorrecto = false;
             return "registroResponsable.xhtml?faces-redirect=true";
         }
         
         if (apellidos.isEmpty()) {
             FacesMessage fm = new FacesMessage("Campo \"Apellidos\" vacío");
             FacesContext.getCurrentInstance().addMessage("registroResponsable:inputLastName", fm);
+            incorrecto = false;
             return "registroResponsable.xhtml?faces-redirect=true";
         }
         
         if (contraseniaa.isEmpty()) {
             FacesMessage fm = new FacesMessage("Campo \"Password\" vacío");
             FacesContext.getCurrentInstance().addMessage("registroResponsable:inputPassword", fm);
+            incorrecto = false;
             return "registroResponsable.xhtml?faces-redirect=true";
         }
         
         if (dni.isEmpty()) {
             FacesMessage fm = new FacesMessage("Campo \"DNI\" vacío");
             FacesContext.getCurrentInstance().addMessage("registroResponsable:inputDNI", fm);
+            incorrecto = false;
             return "registroResponsable.xhtml?faces-redirect=true";
         }
-        
+        incorrecto = true;
         Usuario user = new Usuario(usuarioo,email,nombre,apellidos,contraseniaa,rol);
         usuarios.add(user);
         return "login.xhtml?faces-redirect=true";
@@ -560,9 +588,11 @@ public class BD implements Serializable {
         if(nombrea.isEmpty()) {
             FacesMessage fm = new FacesMessage("Campo \"Nombre\" vacío");
             FacesContext.getCurrentInstance().addMessage("proponer:fechaInicio", fm);
+            incorrecto=false;
             return "proponer.xhtml?faces-redirect=true";
         }
         if (!comprobarIntervaloFechas()) { //Comprueba formato y cronología
+            incorrecto=false;
             return "proponer.xhtml?faces-redirect=true";
         }
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
@@ -580,6 +610,7 @@ public class BD implements Serializable {
         descripciona="";
         lugara="";
         setMostrarActividad(acti);
+        incorrecto = true;
         return "actividad.xhtml?faces-redirect=true";
         
     }
