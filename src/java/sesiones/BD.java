@@ -526,6 +526,12 @@ public class BD implements Serializable {
             return "registroAfiliado.xhtml";
         }
         
+        if (numero.length()!= 9){
+            FacesMessage fm = new FacesMessage("Campo \"Telefono\" no válido");
+            FacesContext.getCurrentInstance().addMessage("registroAfiliado:inputTlf", fm);
+            return "registroAfiliado.xhtml";
+        }
+        
         Usuario user = new Usuario(usuarioo,email,nombre,apellidos,contraseniaa,rol);
         usuarios.add(user);
         email="";
