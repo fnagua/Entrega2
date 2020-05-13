@@ -750,6 +750,9 @@ public class BD implements Serializable {
             fechaFina=null;
             return false;
         }
+        /*if(!historyDate.after(todayDate) && !futureDate.before(todayDate)) {
+            /* historyDate <= todayDate <= futureDate 
+        }*/ 
         if(fechaInicioa.compareTo(fechaFina) > 0) {
             FacesMessage fm = new FacesMessage("La fecha de inicio es posterior a la fecha de fin.");
             FacesContext.getCurrentInstance().addMessage("proponer:fechaInicio", fm);
