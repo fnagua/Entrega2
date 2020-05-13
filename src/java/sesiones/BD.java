@@ -11,13 +11,12 @@ import jpa.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.Iterator;
-import javax.enterprise.context.RequestScoped;
+//import javax.enterprise.context.RequestScoped;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
-import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
+//import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import jpa.Actividad.estado;
@@ -423,18 +422,12 @@ public class BD implements Serializable {
                 ctrl.setUsuario(u);
                 return ctrl.home();
             } else {//contraseña incorrecta
-               FacesMessage fm = new FacesMessage("La contraseña no es correcta");
-                FacesContext.getCurrentInstance().addMessage("login:pass", fm);
                 ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Contraseña Incorrecta", "Contraseña Incorrecta"));
             }
         } else {//usuario no encontrado
-            FacesMessage fm = new FacesMessage("La cuenta no existe");
-            FacesContext.getCurrentInstance().addMessage("login:user", fm);
             ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Usuario no encontrado", "Usuario no encontrado"));
-            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Tit msg", "Mensaje");
-        FacesContext.getCurrentInstance().addMessage(null, message);
         }
-        return "login.xhtml?faces-redirect=true";
+        return "login.xhtml";
     }
 
     //registran un usuario comprobando las entradas
