@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.text.SimpleDateFormat;
 import java.util.Iterator;
+import java.util.regex.Pattern;
 //import javax.enterprise.context.RequestScoped;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
@@ -760,4 +761,29 @@ public class BD implements Serializable {
          }
         return true;
     }
+    
+    public static boolean isEmail(String email) { 
+        String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\."+ 
+                            "[a-zA-Z0-9_+&*-]+)*@" + 
+                            "(?:[a-zA-Z0-9-]+\\.)+[a-z" + 
+                            "A-Z]{2,7}$"; 
+                              
+        Pattern pat = Pattern.compile(emailRegex); 
+        if (email == null)
+            return false;
+        return pat.matcher(email).matches();
+    }
+    
+    public static boolean isDNI(String dni) {
+        String dniRegex = "[0-9]{8}[a-zA-Z]";
+                              
+        Pattern pat = Pattern.compile(dniRegex); 
+        if (dni == null) return false;
+        
+        if (pat.matcher(dni).matches()) {
+            return true;//se podría comprobar el módulo aquí
+        }
+        return false;
+    }
+    
 }
