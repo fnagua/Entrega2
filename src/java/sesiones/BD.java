@@ -535,18 +535,6 @@ public class BD implements Serializable {
     }
     public String registrarResponsable(){
         
-        if (usuarioo.isEmpty()) {
-            FacesMessage fm = new FacesMessage("Campo \"Nombre de Usuaro\" vacío");
-            FacesContext.getCurrentInstance().addMessage("registroResponsable:inputUserName", fm);
-            return "registroResponsable.xhtml";
-        }
-        
-        if (email.isEmpty()) {
-            FacesMessage fm = new FacesMessage("Campo \"Email\" vacío");
-            FacesContext.getCurrentInstance().addMessage("registroResponsable:inputEmailAddress", fm);
-            return "registroResponsable.xhtml";
-        }
-        
         if (nombre.isEmpty()) {
             FacesMessage fm = new FacesMessage("Campo \"Nombre\" vacío");
             FacesContext.getCurrentInstance().addMessage("registroResponsable:inputName", fm);
@@ -559,6 +547,18 @@ public class BD implements Serializable {
             return "registroResponsable.xhtml";
         }
         
+        if (usuarioo.isEmpty()) {
+            FacesMessage fm = new FacesMessage("Campo \"Nombre de Usuaro\" vacío");
+            FacesContext.getCurrentInstance().addMessage("registroResponsable:inputUserName", fm);
+            return "registroResponsable.xhtml";
+        }
+        
+        if (email.isEmpty()) {
+            FacesMessage fm = new FacesMessage("Campo \"Email\" vacío");
+            FacesContext.getCurrentInstance().addMessage("registroResponsable:inputEmailAddress", fm);
+            return "registroResponsable.xhtml";
+        }
+        
         if (contraseniaa.isEmpty()) {
             FacesMessage fm = new FacesMessage("Campo \"Password\" vacío");
             FacesContext.getCurrentInstance().addMessage("registroResponsable:inputPassword", fm);
@@ -567,7 +567,7 @@ public class BD implements Serializable {
         
         if (!contraseniaa2.equals(contraseniaa)) {
             FacesMessage fm = new FacesMessage("Las contraseñas no coinciden");
-            FacesContext.getCurrentInstance().addMessage("registroResponsable:inputPassword", fm);
+            FacesContext.getCurrentInstance().addMessage("registroResponsable:inputConfirmPassword", fm);
             return "registroResponsable.xhtml";
         }
         
@@ -629,11 +629,11 @@ public class BD implements Serializable {
         //Comprobar nulls
         if(nombrea.isEmpty()) {
             FacesMessage fm = new FacesMessage("Campo \"Nombre\" vacío");
-            FacesContext.getCurrentInstance().addMessage("proponer:fechaInicio", fm);
+            FacesContext.getCurrentInstance().addMessage("proponer:nombre", fm);
             return "proponer.xhtml";
         }
         if (!comprobarIntervaloFechas()) { //Comprueba formato y cronología
-            return "proponer.xhtml?faces-redirect=true";
+            return "proponer.xhtml";
         }
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         tipo tip;

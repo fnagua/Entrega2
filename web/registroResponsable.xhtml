@@ -23,23 +23,22 @@
                                         <div class="card-header">
                                             <h3 class="text-center font-weight-light my-4">Registro Responsable</h3>
                                         </div>
-                                        <h:form id="registro">
+                                        <h:form id="registroResponsable">
                                             <div class="card-body">
                                                 <div class="form-row">
                                                     <div class="form-row">
                                                         <div class="col-md-6">
                                                             <div class="form-group"><label class="mb-1"
-                                                                    for="inputFirstName">Nombre*</label>
-                                                                <h:inputText class="form-control py-4"
-                                                                    value="#{bd.nombre}" />
+                                                                    for="inputName">Nombre*</label>
+                                                                <h:inputText id="inputName" class="form-control py-4" value="#{bd.nombre}" />
                                                             </div>
+                                                            <h:message for="inputName" style="color:red"/>
                                                         </div>
                                                         <div class="col-md-6">
-                                                            <div class="form-group"><label class=" mb-1"
-                                                                    for="inputLastName">Apellidos*</label>
-                                                                <h:inputText class="form-control py-4"
-                                                                    id="inputLastName" value="#{bd.apellidos}" />
+                                                            <div class="form-group"><label class=" mb-1" for="inputLastName">Apellidos*</label>
+                                                                <h:inputText id="inputLastName" class="form-control py-4" value="#{bd.apellidos}" />
                                                             </div>
+                                                            <h:message for="inputLastName" style="color:red"/>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -48,11 +47,13 @@
                                                     <h:inputText class="form-control py-4" id="inputUserName"
                                                         value="#{bd.usuarioo}" />
                                                 </div>
+                                                <h:message for="inputUserName" style="color:red"/>
                                                 <div class="form-group"><label class="mb-1"
                                                         for="inputEmailAddress">Email*</label>
                                                     <h:inputText class="form-control py-4" id="inputEmailAddress"
                                                         value="#{bd.email}" />
                                                 </div>
+                                                <h:message for="inputEmailAddress" style="color:red"/>
                                                 <div class="form-row">
 
                                                     <div class="col-md-6">
@@ -69,6 +70,8 @@
                                                                 id="inputConfirmPassword" value="#{bd.contraseniaa2}" />
                                                         </div>
                                                     </div>
+                                                    <h:message for="inputPassword" style="color:red"/>
+                                                    <h:message for="inputConfirmPassword" style="color:red"/>
                                                 </div>
 
                                                 <div class="form-row">
@@ -78,7 +81,7 @@
                                                         <h:inputText class="form-control py-4" id="inputDNI"
                                                             value="#{bd.dni}" />
                                                     </div>
-
+                                                    <h:message for="inputDNI" style="color:red"/>
                                                     <div>
                                                         <label for="Desc">Descripcion</label>
                                                         <h:inputTextarea rows="4" cols="53" readonly="false"
