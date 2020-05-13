@@ -11,15 +11,16 @@
                     <h1 class="mt-4"> Nueva Actividad </h1>
                     <div class="card mb-4">
                         <div class="card-body">
-                            <h:form id="botones">
+                            <h:form id="proponer">
                                 <div class="row">
 
                                     <!--Lugar donde se introducen los datos de la actividad-->
+                                    <!-- botones: nombre, fecha inicio, fecha finx-->
                                     <div class="col-lg-6">
 
                                         <p class="mb-2 mt-2"> Nombre: </p>
                                         <h:inputText id="nombre" class="form-control py-2" value="#{bd.nombrea}" />
-
+                                        <h:message for="nombre" style="color:red"/>
                                         <p class="mb-2 mt-2"> Tipo: </p>
                                         <h:selectOneMenu class="mt-2 mb-2 w-100 " id="so" value="#{bd.tipoa}">
                                             <f:selectItem itemValue="1" itemLabel="   Voluntariado   " />
@@ -29,10 +30,10 @@
                                         <p class="mb-2 mt-2">Fecha de Inicio:
                                         <h:inputText id="fechaInicio" class="form-control py-2 text-muted mt-2" value="#{bd.fechaInicioa}"/>
                                         </p>
-
+                                         <h:message for="fechaInicio" style="color:red"/>   
                                         <p class="mb-2 mt-2"> Fecha de fin: </p>
                                         <h:inputText id="fechaFin" class="form-control py-2" value="#{bd.fechaFina}" />
-
+                                         <h:message for="fechaFin" style="color:red"/>
                                         <p class="mb-2 mt-2"> Lugar: </p>
                                         <h:inputText id="lugar" class="form-control py-2 mb-3" value="#{bd.lugara}" />
                                     </div>
