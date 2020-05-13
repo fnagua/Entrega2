@@ -31,13 +31,15 @@
                                             <h:form id="login">
                                                 <div class="form-group">
                                                     <label class="small mt-1">Nombre Usuario</label>
-                                                    <h:inputText class="form-control py-4" value="#{bd.usuario}" />
+                                                    <h:inputText id="user" class="form-control py-4" value="#{bd.usuario}" />
                                                 </div>
+                                                <h:message for="user" style="color:red"/>
                                                 <div class="form-group">
                                                     <label class="small mt-1">Password</label>
-                                                    <h:inputSecret class="form-control py-4"
+                                                    <h:inputSecret id="pass" class="form-control py-4"
                                                         value="#{bd.contrasenia}" />
                                                 </div>
+                                                <h:message for="pass" style="color:red"/>
                                                 <div
                                                     class="form-group d-flex align-items-center justify-content-between mt-4">
 
@@ -48,7 +50,6 @@
                                                         action="#{bd.autenticar()}" />
 
                                                 </div>
-                                                <h:messages/> 
                                                 <div class="d-flex justify-content-center mt-4">
                                                     <a class="d-flex mt-4" title="Logo Uma" href="https://www.uma.es">
                                                         <img src="resources/img/logo-umaes.png" />

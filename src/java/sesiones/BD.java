@@ -422,10 +422,12 @@ public class BD implements Serializable {
                 ctrl.setUsuario(u);
                 return ctrl.home();
             } else {//contraseña incorrecta
-                ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Contraseña Incorrecta", "Contraseña Incorrecta"));
+                FacesMessage fm = new FacesMessage("La contraseña no es correcta");
+                ctx.addMessage("login:pass", fm);
             }
         } else {//usuario no encontrado
-            ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Usuario no encontrado", "Usuario no encontrado"));
+            FacesMessage fm = new FacesMessage("La cuenta no existe");
+            ctx.addMessage("login:user", fm);
         }
         return "login.xhtml";
     }
@@ -433,40 +435,42 @@ public class BD implements Serializable {
     //registran un usuario comprobando las entradas
     public String registrarVoluntario(){
         
+        FacesContext ctx = FacesContext.getCurrentInstance();
+        
         if (usuarioo.isEmpty()) {
             FacesMessage fm = new FacesMessage("Campo \"Nombre de Usuaro\" vacío");
-            FacesContext.getCurrentInstance().addMessage("registroVoluntario:inputUserName", fm);
-            return "registroVoluntario.xhtml?faces-redirect=true";
+            ctx.addMessage("registroVoluntario:inputUserName", fm);
+            return "registroVoluntario.xhtml";
         }
         
         if (email.isEmpty()) {
             FacesMessage fm = new FacesMessage("Campo \"Email\" vacío");
-            FacesContext.getCurrentInstance().addMessage("registroVoluntario:inputEmailAddress", fm);
-            return "registroVoluntario.xhtml?faces-redirect=true";
+            ctx.addMessage("registroVoluntario:inputEmailAddress", fm);
+            return "registroVoluntario.xhtml";
         }
         
         if (nombre.isEmpty()) {
             FacesMessage fm = new FacesMessage("Campo \"Nombre\" vacío");
-            FacesContext.getCurrentInstance().addMessage("registroVoluntario:inputName", fm);
-            return "registroVoluntario.xhtml?faces-redirect=true";
+            ctx.addMessage("registroVoluntario:inputName", fm);
+            return "registroVoluntario.xhtml";
         }
         
         if (apellidos.isEmpty()) {
             FacesMessage fm = new FacesMessage("Campo \"Apellidos\" vacío");
-            FacesContext.getCurrentInstance().addMessage("registroVoluntario:inputLastName", fm);
-            return "registroVoluntario.xhtml?faces-redirect=true";
+            ctx.addMessage("registroVoluntario:inputLastName", fm);
+            return "registroVoluntario.xhtml";
         }
         
         if (contraseniaa.isEmpty()) {
             FacesMessage fm = new FacesMessage("Campo \"Password\" vacío");
-            FacesContext.getCurrentInstance().addMessage("registroVoluntario:inputPassword", fm);
-            return "registroVoluntario.xhtml?faces-redirect=true";
+            ctx.addMessage("registroVoluntario:inputPassword", fm);
+            return "registroVoluntario.xhtml";
         }
         
         if (!contraseniaa2.equals(contraseniaa)) {
             FacesMessage fm = new FacesMessage("Las contraseñas no coinciden");
-            FacesContext.getCurrentInstance().addMessage("registroVoluntario:inputPassword", fm);
-            return "registroVoluntario.xhtml?faces-redirect=true";
+            ctx.addMessage("registroVoluntario:inputConfirmPassword", fm);
+            return "registroVoluntario.xhtml";
         }
         
         Usuario user = new Usuario(usuarioo,email,nombre,apellidos,contraseniaa,rol);
@@ -475,50 +479,50 @@ public class BD implements Serializable {
         nombre="";
         apellidos="";
         usuarioo="";
-        return "login.xhtml?faces-redirect=true";
+        return "login.xhtml";
     }
     public String registrarAfiliado(){
         
         if (usuarioo.isEmpty()) {
             FacesMessage fm = new FacesMessage("Campo \"Nombre de Usuaro\" vacío");
             FacesContext.getCurrentInstance().addMessage("registroAfiliado:inputUserName", fm);
-            return "registroAfiliado.xhtml?faces-redirect=true";
+            return "registroAfiliado.xhtml";
         }
         
         if (email.isEmpty()) {
             FacesMessage fm = new FacesMessage("Campo \"Email\" vacío");
             FacesContext.getCurrentInstance().addMessage("registroAfiliado:inputEmailAddress", fm);
-            return "registroAfiliado.xhtml?faces-redirect=true";
+            return "registroAfiliado.xhtml";
         }
         
         if (nombre.isEmpty()) {
             FacesMessage fm = new FacesMessage("Campo \"Nombre\" vacío");
             FacesContext.getCurrentInstance().addMessage("registroAfiliado:inputName", fm);
-            return "registroAfiliado.xhtml?faces-redirect=true";
+            return "registroAfiliado.xhtml";
         }
         
         if (apellidos.isEmpty()) {
             FacesMessage fm = new FacesMessage("Campo \"Apellidos\" vacío");
             FacesContext.getCurrentInstance().addMessage("registroAfiliado:inputLastName", fm);
-            return "registroAfiliado.xhtml?faces-redirect=true";
+            return "registroAfiliado.xhtml";
         }
         
         if (contraseniaa.isEmpty()) {
             FacesMessage fm = new FacesMessage("Campo \"Password\" vacío");
             FacesContext.getCurrentInstance().addMessage("registroAfiliado:inputPassword", fm);
-            return "registroAfiliado.xhtml?faces-redirect=true";
+            return "registroAfiliado.xhtml";
         }
         
         if (!contraseniaa2.equals(contraseniaa)) {
             FacesMessage fm = new FacesMessage("Las contraseñas no coinciden");
             FacesContext.getCurrentInstance().addMessage("registroAfiliado:inputPassword", fm);
-            return "registroAfiliado.xhtml?faces-redirect=true";
+            return "registroAfiliado.xhtml";
         }
         
         if (dni.isEmpty()) {
             FacesMessage fm = new FacesMessage("Campo \"DNI\" vacío");
             FacesContext.getCurrentInstance().addMessage("registroAfiliado:inputDNI", fm);
-            return "registroAfiliado.xhtml?faces-redirect=true";
+            return "registroAfiliado.xhtml";
         }
         
         Usuario user = new Usuario(usuarioo,email,nombre,apellidos,contraseniaa,rol);
@@ -527,50 +531,50 @@ public class BD implements Serializable {
         nombre="";
         apellidos="";
         usuarioo="";
-        return "login.xhtml?faces-redirect=true";
+        return "login.xhtml";
     }
     public String registrarResponsable(){
         
         if (usuarioo.isEmpty()) {
             FacesMessage fm = new FacesMessage("Campo \"Nombre de Usuaro\" vacío");
             FacesContext.getCurrentInstance().addMessage("registroResponsable:inputUserName", fm);
-            return "registroResponsable.xhtml?faces-redirect=true";
+            return "registroResponsable.xhtml";
         }
         
         if (email.isEmpty()) {
             FacesMessage fm = new FacesMessage("Campo \"Email\" vacío");
             FacesContext.getCurrentInstance().addMessage("registroResponsable:inputEmailAddress", fm);
-            return "registroResponsable.xhtml?faces-redirect=true";
+            return "registroResponsable.xhtml";
         }
         
         if (nombre.isEmpty()) {
             FacesMessage fm = new FacesMessage("Campo \"Nombre\" vacío");
             FacesContext.getCurrentInstance().addMessage("registroResponsable:inputName", fm);
-            return "registroResponsable.xhtml?faces-redirect=true";
+            return "registroResponsable.xhtml";
         }
         
         if (apellidos.isEmpty()) {
             FacesMessage fm = new FacesMessage("Campo \"Apellidos\" vacío");
             FacesContext.getCurrentInstance().addMessage("registroResponsable:inputLastName", fm);
-            return "registroResponsable.xhtml?faces-redirect=true";
+            return "registroResponsable.xhtml";
         }
         
         if (contraseniaa.isEmpty()) {
             FacesMessage fm = new FacesMessage("Campo \"Password\" vacío");
             FacesContext.getCurrentInstance().addMessage("registroResponsable:inputPassword", fm);
-            return "registroResponsable.xhtml?faces-redirect=true";
+            return "registroResponsable.xhtml";
         }
         
         if (!contraseniaa2.equals(contraseniaa)) {
             FacesMessage fm = new FacesMessage("Las contraseñas no coinciden");
             FacesContext.getCurrentInstance().addMessage("registroResponsable:inputPassword", fm);
-            return "registroResponsable.xhtml?faces-redirect=true";
+            return "registroResponsable.xhtml";
         }
         
         if (dni.isEmpty()) {
             FacesMessage fm = new FacesMessage("Campo \"DNI\" vacío");
             FacesContext.getCurrentInstance().addMessage("registroResponsable:inputDNI", fm);
-            return "registroResponsable.xhtml?faces-redirect=true";
+            return "registroResponsable.xhtml";
         }
         Usuario user = new Usuario(usuarioo,email,nombre,apellidos,contraseniaa,rol);
         usuarios.add(user);
@@ -578,7 +582,7 @@ public class BD implements Serializable {
         nombre="";
         apellidos="";
         usuarioo="";
-        return "login.xhtml?faces-redirect=true";
+        return "login.xhtml";
     }
     
     //selecciona el rol del registro
@@ -626,7 +630,7 @@ public class BD implements Serializable {
         if(nombrea.isEmpty()) {
             FacesMessage fm = new FacesMessage("Campo \"Nombre\" vacío");
             FacesContext.getCurrentInstance().addMessage("proponer:fechaInicio", fm);
-            return "proponer.xhtml?faces-redirect=true";
+            return "proponer.xhtml";
         }
         if (!comprobarIntervaloFechas()) { //Comprueba formato y cronología
             return "proponer.xhtml?faces-redirect=true";
