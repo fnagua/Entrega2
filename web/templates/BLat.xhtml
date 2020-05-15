@@ -8,7 +8,7 @@
         <div class="sb-sidenav-menu">
             <div class="nav">
                 <div class="sb-sidenav-menu-heading"></div> <!-- Solo sirve para poner el espacio vertical de la barra -->
-                    <a class="nav-link" href="/Entrega2/faces/lista.xhtml"><div class="sb-nav-link-icon"><i class="fas fa-list"></i></div>Lista actividades</a>
+                    <a class="nav-link" href="lista.xhtml"><div class="sb-nav-link-icon"><i class="fas fa-list"></i></div>Lista actividades</a>
                 
                 <c:if test="#{not empty controlAutorizacion.usuario}">
                     <!-- Administracion -->
@@ -17,11 +17,11 @@
                     </c:if>
                     
                     <c:if test="#{ controlAutorizacion.usuario.rol == 'AFILIADO' || controlAutorizacion.usuario.rol == 'ADMINISTRADOR'}">
-                        <a class="nav-link" href="/Entrega2/faces/proponer.xhtml"><div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>Proponer actividades</a>
+                        <a class="nav-link" href="proponer.xhtml"><div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>Proponer actividades</a>
                     </c:if>
                     
                     <c:if test="#{ controlAutorizacion.usuario.rol == 'RESPONSABLE' || controlAutorizacion.usuario.rol == 'ADMINISTRADOR'}">
-                        <a class="nav-link" href="/Entrega2/faces/listaVal.xhtml"><div class="sb-nav-link-icon"><i class="fas fa-tasks"></i></div>Validar actividades</a>
+                        <a class="nav-link" href="listaVal.xhtml"><div class="sb-nav-link-icon"><i class="fas fa-tasks"></i></div>Validar actividades</a>
                     </c:if>
                 </c:if>
                     

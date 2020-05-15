@@ -1,16 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package jpa;
 
 import javax.persistence.*;
 
-/**
- *
- * @author Alejandro
- */
 public class JPA {
 
     /**
@@ -31,7 +22,7 @@ public class JPA {
         */
 
         // TODO Auto-generated method stub
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("JPAPU");
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("Entrega2PU");
         EntityManager em = emf.createEntityManager();
         // 3-Persists the book to the database
         
